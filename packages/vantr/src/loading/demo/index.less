@@ -1,0 +1,26 @@
+@import '~@vantr/styles/lib/style/variables.less';
+
+.demo-loading {
+  padding-bottom: @v-spacing-xl;
+  &-title {
+    padding: @line-height-md @h-spacing-xl @h-spacing-xl;
+    color: rgba(69, 90, 100, 0.6);
+    font-weight: normal;
+    font-size: @font-size-md;
+  }
+
+  &-block {
+    padding: 0 @v-spacing-xl;
+  }
+
+  .@{vanr-prefix}-loading {
+    margin-bottom: @v-spacing-lg;
+    display: inline-block;
+    &:not(:last-child) {
+      margin-right: @v-spacing-xl;
+    }
+    &-vertical {
+      display: inline-flex;
+    }
+  }
+}

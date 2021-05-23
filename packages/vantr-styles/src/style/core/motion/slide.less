@@ -1,0 +1,129 @@
+.slide-motion(@className, @keyframeName) {
+  @name: ~'@{vanr-prefix}-@{className}';
+  .make-motion(@name, @keyframeName);
+  .@{name}-enter,
+  .@{name}-appear {
+    animation-timing-function: @ease-out-quint;
+    opacity: 0;
+  }
+  .@{name}-leave {
+    animation-timing-function: @ease-in-quint;
+  }
+}
+
+.slide-motion(slide-up, vanr-slide-up);
+.slide-motion(slide-down, vanr-slide-down);
+.slide-motion(slide-left, vanr-slide-left);
+.slide-motion(slide-right, vanr-slide-right);
+
+@keyframes vanr-slide-up-in {
+  0% {
+    opacity: 0;
+    transform: scaleY(0.8);
+    transform-origin: 0% 0%;
+  }
+
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+    transform-origin: 0% 0%;
+  }
+}
+
+@keyframes vanr-slide-up-out {
+  0% {
+    opacity: 1;
+    transform: scaleY(1);
+    transform-origin: 0% 0%;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scaleY(0.8);
+    transform-origin: 0% 0%;
+  }
+}
+
+@keyframes vanr-slide-down-in {
+  0% {
+    opacity: 0;
+    transform: scaleY(0.8);
+    transform-origin: 100% 100%;
+  }
+
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+    transform-origin: 100% 100%;
+  }
+}
+
+@keyframes vanr-slide-down-out {
+  0% {
+    opacity: 1;
+    transform: scaleY(1);
+    transform-origin: 100% 100%;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scaleY(0.8);
+    transform-origin: 100% 100%;
+  }
+}
+
+@keyframes vanr-slide-left-in {
+  0% {
+    opacity: 0;
+    transform: scaleX(0.8);
+    transform-origin: 0% 0%;
+  }
+
+  100% {
+    opacity: 1;
+    transform: scaleX(1);
+    transform-origin: 0% 0%;
+  }
+}
+
+@keyframes vanr-slide-left-out {
+  0% {
+    opacity: 1;
+    transform: scaleX(1);
+    transform-origin: 0% 0%;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scaleX(0.8);
+    transform-origin: 0% 0%;
+  }
+}
+
+@keyframes vanr-slide-right-in {
+  0% {
+    opacity: 0;
+    transform: scaleX(0.8);
+    transform-origin: 100% 0%;
+  }
+
+  100% {
+    opacity: 1;
+    transform: scaleX(1);
+    transform-origin: 100% 0%;
+  }
+}
+
+@keyframes vanr-slide-right-out {
+  0% {
+    opacity: 1;
+    transform: scaleX(1);
+    transform-origin: 100% 0%;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scaleX(0.8);
+    transform-origin: 100% 0%;
+  }
+}

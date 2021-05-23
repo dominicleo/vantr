@@ -1,0 +1,174 @@
+@vanr-prefix: vanr;
+
+@hd: 1px;
+@rpx: 0.5 * @hd;
+
+// Color Palette
+@black: #000;
+@white: #fff;
+@gray-1: #f7f8fa;
+@gray-2: #f2f3f5;
+@gray-3: #ebedf0;
+@gray-4: #dcdee0;
+@gray-5: #c8c9cc;
+@gray-6: #969799;
+@gray-7: #646566;
+@gray-8: #323233;
+@red: #ee0a24;
+@blue: #1989fa;
+@orange: #ff976a;
+@orange-dark: #ed6a0c;
+@orange-light: #fffbe8;
+@green: #07c160;
+
+// Gradient Colors
+@gradient-red: linear-gradient(to right, #ff6034, #ee0a24);
+@gradient-orange: linear-gradient(to right, #ffd01e, #ff8917);
+
+// Component Colors
+@text-color: @gray-8;
+@active-color: @gray-2;
+@active-opacity: 0.7;
+@disabled-opacity: 0.4;
+@background-color: @gray-1;
+@background-color-light: #fafafa;
+@text-link-color: #576b95;
+
+//水平间距
+@h-spacing-xs: 8 * @rpx;
+@h-spacing-sm: 12 * @rpx;
+@h-spacing-md: 16 * @rpx;
+@h-spacing-lg: 24 * @rpx;
+@h-spacing-xl: 32 * @rpx;
+
+//垂直间距
+@v-spacing-xs: 8 * @rpx;
+@v-spacing-sm: 12 * @rpx;
+@v-spacing-md: 16 * @rpx;
+@v-spacing-lg: 24 * @rpx;
+@v-spacing-xl: 32 * @rpx;
+
+// Font
+@font-size-xs: 20 * @rpx;
+@font-size-sm: 24 * @rpx;
+@font-size-md: 28 * @rpx;
+@font-size-lg: 32 * @rpx;
+@font-weight-bold: 500;
+@line-height-xs: 28 * @rpx;
+@line-height-sm: 36 * @rpx;
+@line-height-md: 40 * @rpx;
+@line-height-lg: 44 * @rpx;
+@base-font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Segoe UI, Arial,
+  Roboto, 'PingFang SC', 'miui', 'Hiragino Sans GB', 'Microsoft Yahei', sans-serif;
+@price-integer-font-family: Avenir-Heavy, PingFang SC, Helvetica Neue, Arial, sans-serif;
+
+// Animation
+@ease-base-out: cubic-bezier(0.7, 0.3, 0.1, 1);
+@ease-base-in: cubic-bezier(0.9, 0, 0.3, 0.7);
+@ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
+@ease-in: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+@ease-in-out: cubic-bezier(0.645, 0.045, 0.355, 1);
+@ease-out-back: cubic-bezier(0.12, 0.4, 0.29, 1.46);
+@ease-in-back: cubic-bezier(0.71, -0.46, 0.88, 0.6);
+@ease-in-out-back: cubic-bezier(0.71, -0.46, 0.29, 1.46);
+@ease-out-circ: cubic-bezier(0.08, 0.82, 0.17, 1);
+@ease-in-circ: cubic-bezier(0.6, 0.04, 0.98, 0.34);
+@ease-in-out-circ: cubic-bezier(0.78, 0.14, 0.15, 0.86);
+@ease-out-quint: cubic-bezier(0.23, 1, 0.32, 1);
+@ease-in-quint: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+@ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1);
+
+// Animation
+@animation-duration-slow: 0.3s; // Modal
+@animation-duration-base: 0.2s;
+@animation-duration-fast: 0.1s; // Tooltip
+@animation-timing-function-enter: ease-out;
+@animation-timing-function-leave: ease-in;
+
+// Border
+@border-color: @gray-3;
+@border-width-base: 1px;
+@border-radius-sm: 2 * @rpx;
+@border-radius-md: 4 * @rpx;
+@border-radius-lg: 8 * @rpx;
+@border-radius-max: 50vh;
+
+// Button
+@button-xs-size: 48 * @rpx;
+@button-xs-padding: 0 @h-spacing-sm;
+@button-xs-font-size: @font-size-xs;
+@button-sm-size: 64 * @rpx;
+@button-sm-padding: 0 @h-spacing-md;
+@button-sm-font-size: @font-size-sm;
+@button-md-size: 88 * @rpx;
+@button-md-padding: 0 @h-spacing-lg;
+@button-md-font-size: @font-size-md;
+@button-lg-size: 100 * @rpx;
+@button-lg-padding: 0 @h-spacing-xl;
+@button-lg-font-size: @font-size-lg;
+@button-default-line-height: 1.2;
+@button-default-font-size: @font-size-md;
+@button-default-color: @text-color;
+@button-default-background-color: @white;
+@button-default-border-color: @border-color;
+@button-primary-color: @white;
+@button-primary-background-color: @blue;
+@button-primary-border-color: @blue;
+@button-success-color: @white;
+@button-success-background-color: @green;
+@button-success-border-color: @green;
+@button-danger-color: @white;
+@button-danger-background-color: @red;
+@button-danger-border-color: @red;
+@button-warning-color: @white;
+@button-warning-background-color: @orange;
+@button-warning-border-color: @orange;
+@button-border-width: @border-width-base;
+@button-border-radius: @border-radius-sm;
+@button-round-border-radius: @border-radius-max;
+@button-ghost-background-color: transparent;
+@button-disabled-opacity: @disabled-opacity;
+@button-icon-size: 1.2em;
+@button-loading-icon-size: 40 * @rpx;
+
+// Cell
+@cell-font-size: @font-size-md;
+@cell-line-height: 48 * @rpx;
+@cell-vertical-padding: 20 * @rpx;
+@cell-horizontal-padding: @h-spacing-xl;
+@cell-text-color: @text-color;
+@cell-background-color: @white;
+@cell-border-color: @border-color;
+@cell-active-color: @active-color;
+@cell-required-color: @red;
+@cell-brief-color: @gray-6;
+@cell-brief-font-size: @font-size-sm;
+@cell-brief-line-height: @line-height-sm;
+@cell-brief-margin-top: @h-spacing-xs;
+@cell-extra-color: @gray-6;
+@cell-icon-size: 32 * @rpx;
+@cell-right-icon-color: @gray-6;
+@cell-large-vertical-padding: @h-spacing-lg;
+@cell-large-title-font-size: @font-size-lg;
+@cell-large-brief-font-size: @font-size-md;
+
+// CellGroup
+@cell-group-background-color: @white;
+@cell-group-title-color: @gray-6;
+@cell-group-title-padding: @h-spacing-xl @h-spacing-xl @h-spacing-md;
+@cell-group-title-font-size: @font-size-md;
+@cell-group-title-line-height: 32 * @rpx;
+
+// Loading
+@loading-text-color: @gray-6;
+@loading-text-font-size-xs: @font-size-xs;
+@loading-text-font-size-sm: @font-size-sm;
+@loading-text-font-size-md: @font-size-md;
+@loading-text-font-size-lg: @font-size-lg;
+@loading-spinner-color: @gray-5;
+@loading-spinner-size-xs: 28 * @rpx;
+@loading-spinner-size-sm: 40 * @rpx;
+@loading-spinner-size-md: 46 * @rpx;
+@loading-spinner-size-lg: 60 * @rpx;
+@loading-spinner-spinner-size: 4 * @rpx;
+@loading-spinner-animation-duration: 0.8s;

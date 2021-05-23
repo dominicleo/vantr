@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loading snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="vanr-loading vanr-loading-undefined"
+  >
+    <span
+      class="vanr-loading-spinner-undefined"
+    >
+      <svg
+        class="vanr-loading-circular"
+        viewBox="25 25 50 50"
+      >
+        <circle
+          cx="50"
+          cy="50"
+          fill="none"
+          r="20"
+        />
+      </svg>
+    </span>
+  </div>
+</DocumentFragment>
+`;

@@ -1,0 +1,185 @@
+@import (reference) '../style/index.less';
+
+@prefixCls: ~'@{vanr-prefix}-button';
+
+.@{prefixCls} {
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: @button-default-font-size;
+  line-height: @button-default-line-height;
+  text-align: center;
+  border-radius: @button-border-radius;
+  cursor: pointer;
+  transition: opacity @animation-duration-fast;
+  -webkit-appearance: none;
+  box-sizing: border-box;
+
+  &-active {
+    filter: brightness(0.8);
+
+    > :nth-child(1n + 1) {
+      opacity: @active-opacity;
+    }
+  }
+
+  &-default {
+    color: @button-default-color;
+    background-color: @button-default-background-color;
+    border: @button-border-width solid @button-default-border-color;
+  }
+
+  &-primary {
+    color: @button-primary-color;
+    background-color: @button-primary-background-color;
+    border: @button-border-width solid @button-primary-border-color;
+  }
+
+  &-success {
+    color: @button-success-color;
+    background-color: @button-success-background-color;
+    border: @button-border-width solid @button-success-border-color;
+  }
+
+  &-danger {
+    color: @button-danger-color;
+    background-color: @button-danger-background-color;
+    border: @button-border-width solid @button-danger-border-color;
+  }
+
+  &-warning {
+    color: @button-warning-color;
+    background-color: @button-warning-background-color;
+    border: @button-border-width solid @button-warning-border-color;
+  }
+
+  &-ghost {
+    background-color: @button-ghost-background-color;
+
+    &.@{prefixCls}-primary {
+      color: @button-primary-background-color;
+    }
+
+    &.@{prefixCls}-success {
+      color: @button-success-background-color;
+    }
+
+    &.@{prefixCls}-danger {
+      color: @button-danger-background-color;
+    }
+
+    &.@{prefixCls}-warning {
+      color: @button-warning-background-color;
+    }
+  }
+
+  &-lg {
+    height: @button-lg-size;
+    padding: @button-lg-padding;
+    font-size: @button-lg-font-size;
+  }
+
+  &-md {
+    height: @button-md-size;
+    padding: @button-md-padding;
+    font-size: @button-md-font-size;
+  }
+
+  &-sm {
+    height: @button-sm-size;
+    padding: @button-sm-padding;
+    font-size: @button-sm-font-size;
+  }
+
+  &-xs {
+    height: @button-xs-size;
+    padding: @button-xs-padding;
+    font-size: @button-xs-font-size;
+
+    & + .@{prefixCls}-xs {
+      margin-left: @h-spacing-xs;
+    }
+  }
+
+  &-loading {
+    color: inherit;
+    font-size: inherit;
+
+    &.@{vanr-prefix}-loading {
+      color: inherit;
+      &-spinner {
+        color: currentColor;
+        width: @button-loading-icon-size;
+        height: @button-loading-icon-size;
+      }
+    }
+  }
+
+  &-block {
+    width: 100%;
+    display: block;
+  }
+
+  &-disabled {
+    cursor: not-allowed;
+    opacity: @button-disabled-opacity;
+  }
+
+  &-loading {
+    cursor: default;
+  }
+
+  &-round {
+    border-radius: @button-round-border-radius;
+  }
+
+  &-circle {
+    border-radius: 100%;
+    &.@{prefixCls} {
+      &-lg {
+        width: @button-lg-size;
+        height: @button-lg-size;
+      }
+
+      &-md {
+        width: @button-md-size;
+        height: @button-md-size;
+      }
+
+      &-sm {
+        width: @button-sm-size;
+        height: @button-sm-size;
+      }
+
+      &-xs {
+        width: @button-xs-size;
+        height: @button-xs-size;
+      }
+    }
+  }
+
+  &-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+
+    &::before {
+      content: ' ';
+    }
+  }
+
+  &-icon {
+    font-size: @button-icon-size;
+    line-height: inherit;
+  }
+
+  &-icon + &-text,
+  &-loading + &-text,
+  &-text + &-icon,
+  &-text + &-loading {
+    margin-left: @h-spacing-md;
+  }
+}

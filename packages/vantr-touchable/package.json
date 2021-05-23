@@ -1,0 +1,21 @@
+{
+  "name": "@vantr/touchable",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/dominicleo/vantr"
+  },
+  "description": "vantr-touchable",
+  "types": "es/index.d.ts",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "peerDependencies": {
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "files": [
+    "lib",
+    "es",
+    "README.md"
+  ]
+}

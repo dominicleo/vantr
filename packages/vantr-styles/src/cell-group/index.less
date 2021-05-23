@@ -1,0 +1,17 @@
+@import (reference) '../style/index.less';
+@import (reference) '../style/mixins/hairline.less';
+
+@prefixCls: ~'@{vanr-prefix}-cell-group';
+
+.@{prefixCls} {
+  &-title {
+    padding: @cell-group-title-padding;
+    color: @cell-group-title-color;
+    font-size: @cell-group-title-font-size;
+    line-height: @cell-group-title-line-height;
+  }
+  &-body {
+    position: relative;
+    background-color: #fff;
+  }
+}

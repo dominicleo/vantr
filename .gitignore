@@ -1,0 +1,8 @@
+.umi
+.umi-production
+.husky
+
+node_modules
+dist
+lib
+es

@@ -1,0 +1,18 @@
+{
+  "name": "@vantr/styles",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/dominicleo/vantr"
+  },
+  "description": "vantr-styles",
+  "main": "dist/vantr-style.css",
+  "files": [
+    "dist/*.css",
+    "es",
+    "lib"
+  ],
+  "dependencies": {
+    "normalize.css": "^8.0.1"
+  }
+}

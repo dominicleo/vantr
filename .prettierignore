@@ -1,0 +1,10 @@
+.umi
+.umi-production
+
+**/*.svg
+**/*.html
+**/*.ejs
+node_modules
+
+es
+lib

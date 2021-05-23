@@ -1,0 +1,9 @@
+.umi
+.umi-production
+
+**/*.js
+node_modules
+coverage
+dist
+lib
+es

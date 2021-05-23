@@ -1,0 +1,129 @@
+.move-motion(@className, @keyframeName) {
+  @name: ~'@{vanr-prefix}-@{className}';
+  .make-motion(@name, @keyframeName);
+  .@{name}-enter,
+  .@{name}-appear {
+    animation-timing-function: @ease-out-circ;
+    opacity: 0;
+  }
+  .@{name}-leave {
+    animation-timing-function: @ease-in-circ;
+  }
+}
+
+.move-motion(move-up, vanr-move-up);
+.move-motion(move-down, vanr-move-down);
+.move-motion(move-left, vanr-move-left);
+.move-motion(move-right, vanr-move-right);
+
+@keyframes vanr-move-down-in {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+    transform-origin: 0 0;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+    transform-origin: 0 0;
+  }
+}
+
+@keyframes vanr-move-down-out {
+  0% {
+    opacity: 1;
+    transform: translateY(0%);
+    transform-origin: 0 0;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(100%);
+    transform-origin: 0 0;
+  }
+}
+
+@keyframes vanr-move-left-in {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+    transform-origin: 0 0;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+    transform-origin: 0 0;
+  }
+}
+
+@keyframes vanr-move-left-out {
+  0% {
+    opacity: 1;
+    transform: translateX(0%);
+    transform-origin: 0 0;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(-100%);
+    transform-origin: 0 0;
+  }
+}
+
+@keyframes vanr-move-right-in {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+    transform-origin: 0 0;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+    transform-origin: 0 0;
+  }
+}
+
+@keyframes vanr-move-right-out {
+  0% {
+    opacity: 1;
+    transform: translateX(0%);
+    transform-origin: 0 0;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(100%);
+    transform-origin: 0 0;
+  }
+}
+
+@keyframes vanr-move-up-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+    transform-origin: 0 0;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+    transform-origin: 0 0;
+  }
+}
+
+@keyframes vanr-move-up-out {
+  0% {
+    opacity: 1;
+    transform: translateY(0%);
+    transform-origin: 0 0;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-100%);
+    transform-origin: 0 0;
+  }
+}
