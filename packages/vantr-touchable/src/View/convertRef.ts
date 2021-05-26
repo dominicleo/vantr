@@ -1,4 +1,4 @@
-import * as React from 'react'
+import * as React from 'react';
 
 /**
  * Since react ref may Function-based or Ref-based
@@ -28,18 +28,18 @@ export default function convertRef<T>(
   // ref callback
   onRef?: (ref: React.ElementRef<any>) => void,
 ) {
-  const hostRef = React.useRef<T>()
+  const hostRef = React.useRef<T>();
 
   function updater(ref: React.ElementRef<any>) {
-    onRef?.(ref)
+    onRef?.(ref);
     // @ts-ignore
-    hostRef.current = ref
+    hostRef.current = ref;
 
     if (typeof forwardedRef === 'function') {
-      forwardedRef(ref)
+      forwardedRef(ref);
     } else if (typeof forwardedRef === 'object' && forwardedRef != null) {
       // @ts-ignore
-      forwardedRef.current = ref
+      forwardedRef.current = ref;
     }
   }
 
@@ -48,5 +48,5 @@ export default function convertRef<T>(
     hostRef,
     // Function-based
     ref: updater,
-  }
+  };
 }

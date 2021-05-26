@@ -1,0 +1,26 @@
+{
+  "name": "@vantr/mobile-icons",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dominicleo/vantr/tree/main/packages/vantr-icons"
+  },
+  "description": "vantr-icons",
+  "sideEffects": false,
+  "types": "es/index.d.ts",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "dependencies": {
+    "@vantr/styles": "0.0.0",
+    "@vantr/touchable": "0.0.0",
+    "classnames": "^2.3.1"
+  },
+  "peerDependencies": {
+    "react": "17.0.2"
+  },
+  "files": [
+    "lib",
+    "es",
+    "README.md"
+  ]
+}

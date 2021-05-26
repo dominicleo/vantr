@@ -18,10 +18,7 @@ export default () => {
         <Loading />
         <Loading type='spinner' />
       </Block>
-      <Block title='自定义颜色'>
-        <Loading color='#1989fa' />
-        <Loading type='spinner' color='#1989fa' />
-      </Block>
+
       <Block title='加载尺寸'>
         <Loading size='xs' />
         <Loading size='sm' />
@@ -34,11 +31,19 @@ export default () => {
           <Loading type='spinner' size='lg' />
         </div>
       </Block>
-      <Block title='加载尺寸'>
+      <Block title='加载文案'>
         <Loading>加载中</Loading>
       </Block>
       <Block title='垂直排列'>
-        <Loading vertical>加载中...</Loading>
+        <Loading vertical>加载中</Loading>
+      </Block>
+      <Block title='自定义颜色'>
+        <Loading color='#1989fa' vertical>
+          加载中
+        </Loading>
+        <Loading type='spinner' color='#1989fa' vertical>
+          加载中
+        </Loading>
       </Block>
     </div>
   );

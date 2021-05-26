@@ -3,11 +3,8 @@ import * as React from 'react';
 import { tuple, BaseProps } from '../_internal';
 import '@vantr/styles/lib/loading';
 
-const prefixCls = 'vanr-loading';
-
 const LoadingTypes = tuple('circular', 'spinner');
 export type LoadingType = typeof LoadingTypes[number];
-
 const LoadingSizes = tuple('lg', 'md', 'sm', 'xs');
 export type LoadingSize = typeof LoadingSizes[number];
 
@@ -33,6 +30,8 @@ export interface LoadingProps extends Omit<BaseProps, 'activeClassName'> {
   vertical?: boolean;
 }
 
+const prefixCls = 'vanr-loading';
+
 const Loading: React.FC<LoadingProps> = (props) => {
   const {
     className,
@@ -44,14 +43,11 @@ const Loading: React.FC<LoadingProps> = (props) => {
     children,
   } = props;
 
-  const classes = classNames(
-    prefixCls,
-    {
-      [`${prefixCls}-${size}`]: true,
-      [`${prefixCls}-vertical`]: vertical,
-    },
-    className,
-  );
+  const classes = classNames(prefixCls, {
+    [`${prefixCls}-${size}`]: true,
+    [`${prefixCls}-vertical`]: vertical,
+    [className]: !!className,
+  });
 
   const colorStyle = { color: !!color && color };
 

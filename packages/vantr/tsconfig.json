@@ -10,7 +10,7 @@
     "declaration": true,
     "baseUrl": ".",
     "paths": {
-      "vantr": ["src/index.ts"],
+      "vantr": ["src/index.ts"]
     }
   }
 }

@@ -3,9 +3,11 @@ import * as React from 'react';
 import { BaseProps } from '../_internal';
 import '@vantr/styles/lib/cell-group';
 
-const prefixCls = 'vanr-cell-group';
-
 export interface CellGroupProps extends Omit<BaseProps, 'activeClassName'> {
+  /**
+   * 是否为圆角
+   */
+  radius?: boolean;
   /**
    * 分组标题
    */
@@ -17,10 +19,15 @@ export interface CellGroupProps extends Omit<BaseProps, 'activeClassName'> {
   border?: boolean;
 }
 
-const CellGroup: React.FC<CellGroupProps> = (props) => {
-  const { className, style, title, border = true, children } = props;
+const prefixCls = 'vanr-cell-group';
 
-  const classes = classNames(prefixCls, {}, className);
+const CellGroup: React.FC<CellGroupProps> = (props) => {
+  const { className, style, radius = false, title, border = true, children } = props;
+
+  const classes = classNames(prefixCls, {
+    [`${prefixCls}-radius`]: radius,
+    [className]: !!className,
+  });
 
   return (
     <div className={classes} style={style}>

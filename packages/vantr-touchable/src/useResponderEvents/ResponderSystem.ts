@@ -129,7 +129,7 @@ to return true:wantsResponderID|                            |
                                |                            |
                                +                            + */
 
-import createResponderEvent, { ResponderEvent } from './createResponderEvent'
+import createResponderEvent, { ResponderEvent } from './createResponderEvent';
 import {
   isCancelish,
   isEndish,
@@ -137,7 +137,7 @@ import {
   isScroll,
   isSelectionChange,
   isStartish,
-} from './ResponderEventTypes'
+} from './ResponderEventTypes';
 import {
   getLowestCommonAncestor,
   getResponderPaths,
@@ -146,51 +146,51 @@ import {
   isPrimaryPointerDown,
   setResponderId,
   isTouch,
-} from './utils'
+} from './utils';
 
 /* ------------ TYPES ------------ */
 
-type ResponderId = number
+type ResponderId = number;
 
 type ActiveResponderInstance = {
-  id: ResponderId
-  idPath: Array<number>
-  node: any
-}
+  id: ResponderId;
+  idPath: Array<number>;
+  node: any;
+};
 
 type EmptyResponderInstance = {
-  id: null
-  idPath: null
-  node: null
-}
+  id: null;
+  idPath: null;
+  node: null;
+};
 
-type ResponderInstance = ActiveResponderInstance | EmptyResponderInstance
+type ResponderInstance = ActiveResponderInstance | EmptyResponderInstance;
 
 export type ResponderConfig = {
   // Direct responder events dispatched directly to responder. Do not bubble.
-  onResponderEnd?: (e: ResponderEvent) => void
-  onResponderGrant?: (e: ResponderEvent) => void
-  onResponderMove?: (e: ResponderEvent) => void
-  onResponderRelease?: (e: ResponderEvent) => void
-  onResponderReject?: (e: ResponderEvent) => void
-  onResponderStart?: (e: ResponderEvent) => void
-  onResponderTerminate?: (e: ResponderEvent) => void
-  onResponderTerminationRequest?: (e: ResponderEvent) => boolean
+  onResponderEnd?: (e: ResponderEvent) => void;
+  onResponderGrant?: (e: ResponderEvent) => void;
+  onResponderMove?: (e: ResponderEvent) => void;
+  onResponderRelease?: (e: ResponderEvent) => void;
+  onResponderReject?: (e: ResponderEvent) => void;
+  onResponderStart?: (e: ResponderEvent) => void;
+  onResponderTerminate?: (e: ResponderEvent) => void;
+  onResponderTerminationRequest?: (e: ResponderEvent) => boolean;
   // On pointer down, should this element become the responder?
-  onStartShouldSetResponder?: (e: ResponderEvent) => boolean
-  onStartShouldSetResponderCapture?: (e: ResponderEvent) => boolean
+  onStartShouldSetResponder?: (e: ResponderEvent) => boolean;
+  onStartShouldSetResponderCapture?: (e: ResponderEvent) => boolean;
   // On pointer move, should this element become the responder?
-  onMoveShouldSetResponder?: (e: ResponderEvent) => boolean
-  onMoveShouldSetResponderCapture?: (e: ResponderEvent) => boolean
+  onMoveShouldSetResponder?: (e: ResponderEvent) => boolean;
+  onMoveShouldSetResponderCapture?: (e: ResponderEvent) => boolean;
   // On scroll, should this element become the responder? Do no bubble
-  onScrollShouldSetResponder?: (e: ResponderEvent) => boolean
-  onScrollShouldSetResponderCapture?: (e: ResponderEvent) => boolean
+  onScrollShouldSetResponder?: (e: ResponderEvent) => boolean;
+  onScrollShouldSetResponderCapture?: (e: ResponderEvent) => boolean;
   // On text selection change, should this element become the responder?
-  onSelectionChangeShouldSetResponder?: (e: ResponderEvent) => boolean
-  onSelectionChangeShouldSetResponderCapture?: (e: ResponderEvent) => boolean
-}
+  onSelectionChangeShouldSetResponder?: (e: ResponderEvent) => boolean;
+  onSelectionChangeShouldSetResponderCapture?: (e: ResponderEvent) => boolean;
+};
 
-const emptyObject = {}
+const emptyObject = {};
 
 /* ------------ IMPLEMENTATION ------------ */
 
@@ -198,42 +198,42 @@ const startRegistration = [
   'onStartShouldSetResponderCapture',
   'onStartShouldSetResponder',
   { bubbles: true },
-]
+];
 const moveRegistration = [
   'onMoveShouldSetResponderCapture',
   'onMoveShouldSetResponder',
   { bubbles: true },
-]
+];
 const scrollRegistration = [
   'onScrollShouldSetResponderCapture',
   'onScrollShouldSetResponder',
   { bubbles: false },
-]
+];
 const shouldSetResponderEvents = {
   touchstart: startRegistration,
   mousedown: startRegistration,
   touchmove: moveRegistration,
   mousemove: moveRegistration,
   scroll: scrollRegistration,
-}
+};
 
-const emptyResponder = { id: null, idPath: null, node: null }
-const responderListenersMap = new Map()
+const emptyResponder = { id: null, idPath: null, node: null };
+const responderListenersMap = new Map();
 
-let trackedTouchCount = 0
+let trackedTouchCount = 0;
 let currentResponder: ResponderInstance = {
   id: null,
   node: null,
   idPath: null,
-}
+};
 
 function changeCurrentResponder(responder: ResponderInstance) {
-  currentResponder = responder
+  currentResponder = responder;
 }
 
 function getResponderConfig(id: ResponderId): ResponderConfig {
-  const config = responderListenersMap.get(id)
-  return config != null ? config : emptyObject
+  const config = responderListenersMap.get(id);
+  return config != null ? config : emptyObject;
 }
 
 /**
@@ -247,8 +247,8 @@ function getResponderConfig(id: ResponderId): ResponderConfig {
  * callbacks.
  */
 export function eventListener(domEvent: any) {
-  const eventType = domEvent.type
-  const eventTarget = domEvent.target
+  const eventType = domEvent.type;
+  const eventTarget = domEvent.target;
 
   /**
    * Manage emulated events and early bailout.
@@ -262,18 +262,16 @@ export function eventListener(domEvent: any) {
     eventType === 'mousemove' &&
     trackedTouchCount < 1
   ) {
-    return
+    return;
   }
 
-  const isStartEvent = isStartish(eventType) && isPrimaryPointerDown(domEvent)
-  const isMoveEvent = isMoveish(eventType)
-  const isEndEvent = isEndish(eventType)
-  const isScrollEvent = isScroll(eventType)
-  const isSelectionChangeEvent = isSelectionChange(eventType)
+  const isStartEvent = isStartish(eventType) && isPrimaryPointerDown(domEvent);
+  const isMoveEvent = isMoveish(eventType);
+  const isEndEvent = isEndish(eventType);
+  const isScrollEvent = isScroll(eventType);
+  const isSelectionChangeEvent = isSelectionChange(eventType);
 
-  const responderEvent = isTouch(eventType)
-    ? domEvent
-    : createResponderEvent(domEvent)
+  const responderEvent = isTouch(eventType) ? domEvent : createResponderEvent(domEvent);
 
   /**
    * Record the state of active pointers
@@ -281,12 +279,12 @@ export function eventListener(domEvent: any) {
 
   if (isStartEvent || isMoveEvent || isEndEvent) {
     if (domEvent.touches) {
-      trackedTouchCount = domEvent.touches.length
+      trackedTouchCount = domEvent.touches.length;
     } else {
       if (isStartEvent) {
-        trackedTouchCount = 1
+        trackedTouchCount = 1;
       } else if (isEndEvent) {
-        trackedTouchCount = 0
+        trackedTouchCount = 0;
       }
     }
   }
@@ -295,9 +293,9 @@ export function eventListener(domEvent: any) {
    * Responder System logic
    */
 
-  let eventPaths = getResponderPaths(domEvent)
-  let wasNegotiated = false
-  let wantsResponder
+  let eventPaths = getResponderPaths(domEvent);
+  let wasNegotiated = false;
+  let wantsResponder;
 
   // only currentResponder is null, then responder can be triggered
   // TODO: 把全局唯一改成 多例
@@ -307,38 +305,32 @@ export function eventListener(domEvent: any) {
   ) {
     // If there is already a responder, prune the event paths to the lowest common ancestor
     // of the existing responder and deepest target of the event.
-    const currentResponderIdPath = currentResponder.idPath
-    const eventIdPath = eventPaths.idPath
+    const currentResponderIdPath = currentResponder.idPath;
+    const eventIdPath = eventPaths.idPath;
 
     if (currentResponderIdPath != null && eventIdPath != null) {
-      const lowestCommonAncestor = getLowestCommonAncestor(
-        currentResponderIdPath,
-        eventIdPath,
-      )
-      const indexOfLowestCommonAncestor = eventIdPath.indexOf(
-        lowestCommonAncestor,
-      )
+      const lowestCommonAncestor = getLowestCommonAncestor(currentResponderIdPath, eventIdPath);
+      const indexOfLowestCommonAncestor = eventIdPath.indexOf(lowestCommonAncestor);
       // Skip the current responder so it doesn't receive unexpected "shouldSet" events.
       const index =
-        indexOfLowestCommonAncestor +
-        (lowestCommonAncestor === currentResponder.id ? 1 : 0)
+        indexOfLowestCommonAncestor + (lowestCommonAncestor === currentResponder.id ? 1 : 0);
       eventPaths = {
         idPath: eventIdPath.slice(index),
         nodePath: eventPaths.nodePath.slice(index),
-      }
+      };
     }
     // If a node wants to become the responder, attempt to transfer.
-    wantsResponder = findWantsResponder(eventPaths, domEvent, responderEvent)
+    wantsResponder = findWantsResponder(eventPaths, domEvent, responderEvent);
     if (wantsResponder != null) {
       // Sets responder if none exists, or negotates with existing responder.
-      attemptTransfer(responderEvent, wantsResponder)
-      wasNegotiated = true
+      attemptTransfer(responderEvent, wantsResponder);
+      wasNegotiated = true;
     }
   }
 
   // If there is now a responder, invoke its callbacks for the lifecycle of the gesture.
   if (currentResponder.id != null && currentResponder.node != null) {
-    const { id, node } = currentResponder
+    const { id, node } = currentResponder;
     const {
       onResponderStart,
       onResponderMove,
@@ -346,22 +338,22 @@ export function eventListener(domEvent: any) {
       onResponderRelease,
       onResponderTerminate,
       onResponderTerminationRequest,
-    } = getResponderConfig(id)
+    } = getResponderConfig(id);
 
-    responderEvent.bubbles = false
-    responderEvent.cancelable = false
-    responderEvent.currentTarget = node
+    responderEvent.bubbles = false;
+    responderEvent.cancelable = false;
+    responderEvent.currentTarget = node;
 
     // Start
     if (isStartEvent) {
       if (onResponderStart != null) {
-        onResponderStart(responderEvent)
+        onResponderStart(responderEvent);
       }
     }
     // Move
     else if (isMoveEvent) {
       if (onResponderMove != null) {
-        onResponderMove(responderEvent)
+        onResponderMove(responderEvent);
       }
     } else {
       const isTerminateEvent =
@@ -371,38 +363,34 @@ export function eventListener(domEvent: any) {
         // window blur
         (eventType === 'blur' && eventTarget === window) ||
         // responder (or ancestors) blur
-        (eventType === 'blur' &&
-          eventTarget.contains(node) &&
-          domEvent.relatedTarget !== node) ||
+        (eventType === 'blur' && eventTarget.contains(node) && domEvent.relatedTarget !== node) ||
         // native scroll without using a pointer
         (isScrollEvent && trackedTouchCount === 0) ||
         // native scroll on node that is parent of the responder (allow siblings to scroll)
         (isScrollEvent && eventTarget.contains(node) && eventTarget !== node) ||
         // native select/selectionchange on node
-        (isSelectionChangeEvent && hasValidSelection(domEvent))
+        (isSelectionChangeEvent && hasValidSelection(domEvent));
 
       const isReleaseEvent =
-        isEndEvent &&
-        !isTerminateEvent &&
-        !hasTargetTouches(node, domEvent.touches)
+        isEndEvent && !isTerminateEvent && !hasTargetTouches(node, domEvent.touches);
 
       // End
       if (isEndEvent) {
         if (onResponderEnd != null) {
-          onResponderEnd(responderEvent)
+          onResponderEnd(responderEvent);
         }
       }
 
       // Release
       if (isReleaseEvent) {
         if (onResponderRelease != null) {
-          onResponderRelease(responderEvent)
+          onResponderRelease(responderEvent);
         }
-        changeCurrentResponder(emptyResponder)
+        changeCurrentResponder(emptyResponder);
       }
       // Terminate
       if (isTerminateEvent) {
-        let shouldTerminate = true
+        let shouldTerminate = true;
 
         // Responders can still avoid termination but only for these events.
         if (
@@ -416,16 +404,16 @@ export function eventListener(domEvent: any) {
             (onResponderTerminationRequest != null &&
               onResponderTerminationRequest(responderEvent) === false)
           ) {
-            shouldTerminate = false
+            shouldTerminate = false;
           }
         }
 
         if (shouldTerminate) {
           if (onResponderTerminate != null) {
-            onResponderTerminate(responderEvent)
+            onResponderTerminate(responderEvent);
           }
-          changeCurrentResponder(emptyResponder)
-          trackedTouchCount = 0
+          changeCurrentResponder(emptyResponder);
+          trackedTouchCount = 0;
         }
       }
     }
@@ -438,57 +426,57 @@ export function eventListener(domEvent: any) {
  * call "stopPropagation" on the event, stop searching for a responder.
  */
 function findWantsResponder(eventPaths, domEvent, responderEvent) {
-  const shouldSetCallbacks = shouldSetResponderEvents[domEvent.type]
+  const shouldSetCallbacks = shouldSetResponderEvents[domEvent.type];
 
   if (shouldSetCallbacks != null) {
-    const { idPath, nodePath } = eventPaths
+    const { idPath, nodePath } = eventPaths;
 
-    const shouldSetCallbackCaptureName = shouldSetCallbacks[0]
-    const shouldSetCallbackBubbleName = shouldSetCallbacks[1]
-    const { bubbles } = shouldSetCallbacks[2]
+    const shouldSetCallbackCaptureName = shouldSetCallbacks[0];
+    const shouldSetCallbackBubbleName = shouldSetCallbacks[1];
+    const { bubbles } = shouldSetCallbacks[2];
 
-    const check = function(id, node, callbackName) {
-      const config = getResponderConfig(id)
-      const shouldSetCallback = config[callbackName]
+    const check = function (id, node, callbackName) {
+      const config = getResponderConfig(id);
+      const shouldSetCallback = config[callbackName];
       if (shouldSetCallback != null) {
         if (shouldSetCallback(responderEvent) === true) {
-          return { id, node, idPath }
+          return { id, node, idPath };
         }
       }
-    }
+    };
 
     // capture
     for (let i = idPath.length - 1; i >= 0; i--) {
-      const id = idPath[i]
-      const node = nodePath[i]
-      const result = check(id, node, shouldSetCallbackCaptureName)
+      const id = idPath[i];
+      const node = nodePath[i];
+      const result = check(id, node, shouldSetCallbackCaptureName);
       if (result != null) {
-        return result
+        return result;
       }
       if (responderEvent.isPropagationStopped() === true) {
-        return
+        return;
       }
     }
 
     // bubble
     if (bubbles) {
       for (let i = 0; i < idPath.length; i++) {
-        const id = idPath[i]
-        const node = nodePath[i]
-        const result = check(id, node, shouldSetCallbackBubbleName)
+        const id = idPath[i];
+        const node = nodePath[i];
+        const result = check(id, node, shouldSetCallbackBubbleName);
         if (result != null) {
-          return result
+          return result;
         }
         if (responderEvent.isPropagationStopped() === true) {
-          return
+          return;
         }
       }
     } else {
-      const id = idPath[0]
-      const node = nodePath[0]
-      const target = domEvent.target
+      const id = idPath[0];
+      const node = nodePath[0];
+      const target = domEvent.target;
       if (target === node) {
-        return check(id, node, shouldSetCallbackBubbleName)
+        return check(id, node, shouldSetCallbackBubbleName);
       }
     }
   }
@@ -497,50 +485,43 @@ function findWantsResponder(eventPaths, domEvent, responderEvent) {
 /**
  * Attempt to transfer the responder.
  */
-function attemptTransfer(
-  responderEvent: ResponderEvent,
-  wantsResponder: ActiveResponderInstance,
-) {
-  const { id: currentId, node: currentNode } = currentResponder
-  const { id, node } = wantsResponder
+function attemptTransfer(responderEvent: ResponderEvent, wantsResponder: ActiveResponderInstance) {
+  const { id: currentId, node: currentNode } = currentResponder;
+  const { id, node } = wantsResponder;
 
-  const { onResponderGrant, onResponderReject } = getResponderConfig(id)
+  const { onResponderGrant, onResponderReject } = getResponderConfig(id);
 
-  responderEvent.bubbles = false
-  responderEvent.cancelable = false
-  responderEvent.currentTarget = node
+  responderEvent.bubbles = false;
+  responderEvent.cancelable = false;
+  responderEvent.currentTarget = node;
   // Set responder
   if (currentId == null) {
     if (onResponderGrant != null) {
-      responderEvent.currentTarget = node
-      onResponderGrant(responderEvent)
+      responderEvent.currentTarget = node;
+      onResponderGrant(responderEvent);
     }
-    changeCurrentResponder(wantsResponder)
+    changeCurrentResponder(wantsResponder);
   }
   // Negotiate with current responder
   else {
-    const {
-      onResponderTerminate,
-      onResponderTerminationRequest,
-    } = getResponderConfig(currentId)
+    const { onResponderTerminate, onResponderTerminationRequest } = getResponderConfig(currentId);
     const allowTransfer =
-      onResponderTerminationRequest != null &&
-      onResponderTerminationRequest(responderEvent)
+      onResponderTerminationRequest != null && onResponderTerminationRequest(responderEvent);
     if (allowTransfer) {
       // Terminate existing responder
       if (onResponderTerminate != null) {
-        responderEvent.currentTarget = currentNode
-        onResponderTerminate(responderEvent)
+        responderEvent.currentTarget = currentNode;
+        onResponderTerminate(responderEvent);
       }
       // Grant next responder
       if (onResponderGrant != null) {
-        onResponderGrant(responderEvent)
+        onResponderGrant(responderEvent);
       }
-      changeCurrentResponder(wantsResponder)
+      changeCurrentResponder(wantsResponder);
     } else {
       // Reject responder request
       if (onResponderReject != null) {
-        onResponderReject(responderEvent)
+        onResponderReject(responderEvent);
       }
     }
   }
@@ -569,8 +550,8 @@ const documentEventsCapturePhase = [
   'mouseup',
   'mousemove',
   'dragstart',
-]
-const documentEventsBubblePhase = []
+];
+const documentEventsBubblePhase = [];
 
 // 以下事件一定是在 press 的元素上发生，为了避免因为冒泡取消导致不能再 document 上触发，不绑定在 document 上，
 // 同时为了符合常规的代码习惯，也不使用 document 上的 捕获事件
@@ -581,7 +562,7 @@ const domEventBubblePhase = [
   // 'touchmove',
   // 'touchend',
   // 'touchcancel',
-]
+];
 
 // touch 事件使用 SyntheticEvent
 export const domEvents = {
@@ -589,39 +570,39 @@ export const domEvents = {
   onTouchMove: eventListener,
   onTouchEnd: eventListener,
   onTouchCancel: eventListener,
-  onContextMenu: e => {
+  onContextMenu: (e) => {
     // 如果组织了默认的动作，比如 onLongPress 有效的时候，则不在执行相应的事件
     if (!e.isDefaultPrevented()) {
-      eventListener(e)
+      eventListener(e);
     }
   },
-}
+};
 
 export function attachListeners(dom = document) {
-  domEventBubblePhase.forEach(eventType => {
-    dom.addEventListener(eventType, eventListener)
-  })
+  domEventBubblePhase.forEach((eventType) => {
+    dom.addEventListener(eventType, eventListener);
+  });
 
   return () => {
-    domEventBubblePhase.forEach(eventType => {
-      dom.removeEventListener(eventType, eventListener)
-    })
-  }
+    domEventBubblePhase.forEach((eventType) => {
+      dom.removeEventListener(eventType, eventListener);
+    });
+  };
 }
 
 export function attachDocumentListeners() {
   // @ts-ignore
   if (window.__amdReactResponderSystemActive == null) {
-    window.addEventListener('blur', eventListener)
-    documentEventsBubblePhase.forEach(eventType => {
-      document.addEventListener(eventType, eventListener)
-    })
-    documentEventsCapturePhase.forEach(eventType => {
-      document.addEventListener(eventType, eventListener, true)
-    })
+    window.addEventListener('blur', eventListener);
+    documentEventsBubblePhase.forEach((eventType) => {
+      document.addEventListener(eventType, eventListener);
+    });
+    documentEventsCapturePhase.forEach((eventType) => {
+      document.addEventListener(eventType, eventListener, true);
+    });
 
     // @ts-ignore
-    window.__amdReactResponderSystemActive = true
+    window.__amdReactResponderSystemActive = true;
   }
 }
 
@@ -629,8 +610,8 @@ export function attachDocumentListeners() {
  * Register a node with the ResponderSystem.
  */
 export function addNode(id: ResponderId, node: any, config: ResponderConfig) {
-  setResponderId(node, id)
-  responderListenersMap.set(id, config)
+  setResponderId(node, id);
+  responderListenersMap.set(id, config);
 }
 
 /**
@@ -638,10 +619,10 @@ export function addNode(id: ResponderId, node: any, config: ResponderConfig) {
  */
 export function removeNode(id: ResponderId) {
   if (currentResponder.id === id) {
-    terminateResponder()
+    terminateResponder();
   }
   if (responderListenersMap.has(id)) {
-    responderListenersMap.delete(id)
+    responderListenersMap.delete(id);
   }
 }
 
@@ -651,15 +632,15 @@ export function removeNode(id: ResponderId) {
  * with scroll views, input views, etc.
  */
 export function terminateResponder() {
-  const { id, node } = currentResponder
+  const { id, node } = currentResponder;
   if (id != null && node != null) {
-    const { onResponderTerminate } = getResponderConfig(id)
+    const { onResponderTerminate } = getResponderConfig(id);
     if (onResponderTerminate != null) {
-      const event = createResponderEvent({})
-      event.currentTarget = node
-      onResponderTerminate(event)
+      const event = createResponderEvent({});
+      event.currentTarget = node;
+      onResponderTerminate(event);
     }
-    changeCurrentResponder(emptyResponder)
+    changeCurrentResponder(emptyResponder);
   }
-  trackedTouchCount = 0
+  trackedTouchCount = 0;
 }

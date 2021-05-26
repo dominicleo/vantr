@@ -88,10 +88,12 @@
 // Border
 @border-color: @gray-3;
 @border-width-base: 1px;
-@border-radius-sm: 2 * @rpx;
-@border-radius-md: 4 * @rpx;
-@border-radius-lg: 8 * @rpx;
-@border-radius-max: 50vh;
+@border-radius-xs: 2 * @rpx;
+@border-radius-sm: 4 * @rpx;
+@border-radius-md: 8 * @rpx;
+@border-radius-lg: 16 * @rpx;
+@border-radius-xl: 32 * @rpx;
+@border-radius-circle: 50vh;
 
 // Button
 @button-xs-size: 48 * @rpx;
@@ -125,7 +127,7 @@
 @button-warning-border-color: @orange;
 @button-border-width: @border-width-base;
 @button-border-radius: @border-radius-sm;
-@button-round-border-radius: @border-radius-max;
+@button-round-border-radius: @border-radius-circle;
 @button-ghost-background-color: transparent;
 @button-disabled-opacity: @disabled-opacity;
 @button-icon-size: 1.2em;
@@ -153,6 +155,7 @@
 @cell-large-brief-font-size: @font-size-md;
 
 // CellGroup
+@cell-group-radius: @border-radius-lg;
 @cell-group-background-color: @white;
 @cell-group-title-color: @gray-6;
 @cell-group-title-padding: @h-spacing-xl @h-spacing-xl @h-spacing-md;
@@ -172,3 +175,13 @@
 @loading-spinner-size-lg: 60 * @rpx;
 @loading-spinner-spinner-size: 4 * @rpx;
 @loading-spinner-animation-duration: 0.8s;
+
+// Divider
+@divider-margin: @h-spacing-xl 0;
+@divider-text-color: @gray-6;
+@divider-font-size: @font-size-md;
+@divider-line-height: 24px;
+@divider-border-color: @border-color;
+@divider-content-padding: @h-spacing-xl;
+@divider-content-left-width: 10%;
+@divider-content-right-width: 10%;

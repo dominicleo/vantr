@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "repository": {
     "type": "git",
-    "url": "http://github.com/dominicleo/vantr"
+    "url": "https://github.com/dominicleo/vantr/tree/main/packages/vantr-touchable"
   },
   "description": "vantr-touchable",
   "types": "es/index.d.ts",

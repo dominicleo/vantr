@@ -1,2 +1,4 @@
 export { BaseProps } from './BaseProps';
-export { tuple } from './type';
+export * from './type';
+export * from './dom';
+export * from './utils';

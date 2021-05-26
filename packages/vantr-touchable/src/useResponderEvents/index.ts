@@ -15,41 +15,41 @@
  *   }
  */
 
-import * as React from 'react'
-import * as ResponderSystem from './ResponderSystem'
+import * as React from 'react';
+import * as ResponderSystem from './ResponderSystem';
 
-const emptyObject = {}
-let idCounter = 0
+const emptyObject = {};
+let idCounter = 0;
 
 function useStable<T>(getInitialValue: () => T): T {
-  const ref = React.useRef<T | null>(null)
+  const ref = React.useRef<T | null>(null);
   if (ref.current == null) {
-    ref.current = getInitialValue()
+    ref.current = getInitialValue();
   }
-  return ref.current
+  return ref.current;
 }
 
 export default function useResponderEvents(
   hostRef: any,
   config: ResponderSystem.ResponderConfig = emptyObject,
 ) {
-  const id = useStable(() => idCounter++)
-  const isAttachedRef = React.useRef(false)
+  const id = useStable(() => idCounter++);
+  const isAttachedRef = React.useRef(false);
 
   // This is a separate effects so it doesn't run when the config changes.
   // On initial mount, attach global listeners if needed.
   // On unmount, remove node potentially attached to the Responder System.
   React.useEffect(() => {
     // hack: this only attach once
-    ResponderSystem.attachDocumentListeners()
+    ResponderSystem.attachDocumentListeners();
     return () => {
-      ResponderSystem.removeNode(id)
-    }
-  }, [id])
+      ResponderSystem.removeNode(id);
+    };
+  }, [id]);
 
   React.useEffect(() => {
-    return ResponderSystem.attachListeners(hostRef.current)
-  }, [hostRef])
+    return ResponderSystem.attachListeners(hostRef.current);
+  }, [hostRef]);
 
   // Register and unregister with the Responder System as necessary
   React.useEffect(() => {
@@ -62,7 +62,7 @@ export default function useResponderEvents(
       onSelectionChangeShouldSetResponderCapture,
       onStartShouldSetResponder,
       onStartShouldSetResponderCapture,
-    } = config
+    } = config;
 
     const requiresResponderSystem =
       onMoveShouldSetResponder != null ||
@@ -72,20 +72,20 @@ export default function useResponderEvents(
       onSelectionChangeShouldSetResponder != null ||
       onSelectionChangeShouldSetResponderCapture != null ||
       onStartShouldSetResponder != null ||
-      onStartShouldSetResponderCapture != null
+      onStartShouldSetResponderCapture != null;
 
-    const node = hostRef.current
+    const node = hostRef.current;
 
     if (requiresResponderSystem) {
-      ResponderSystem.addNode(id, node, config)
-      isAttachedRef.current = true
+      ResponderSystem.addNode(id, node, config);
+      isAttachedRef.current = true;
     } else if (isAttachedRef.current) {
-      ResponderSystem.removeNode(id)
-      isAttachedRef.current = false
+      ResponderSystem.removeNode(id);
+      isAttachedRef.current = false;
     }
-  }, [config, hostRef, id])
+  }, [config, hostRef, id]);
 
-  React.useDebugValue(config)
+  React.useDebugValue(config);
 
-  return ResponderSystem.domEvents
+  return ResponderSystem.domEvents;
 }

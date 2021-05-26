@@ -35,10 +35,15 @@
   "dependencies": {
     "@vantr/styles": "0.0.0",
     "@vantr/touchable": "0.0.0",
-    "classnames": "^2.3.1"
+    "classnames": "^2.3.1",
+    "hoist-non-react-statics": "3.3.2",
+    "rc-gesture": "0.0.22"
   },
   "peerDependencies": {
     "react": "17.0.2",
     "react-dom": "17.0.2"
+  },
+  "devDependencies": {
+    "@types/hoist-non-react-statics": "3.3.1"
   }
 }

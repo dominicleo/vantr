@@ -4073,6 +4073,11 @@ babel-plugin-transform-react-remove-prop-types@0.4.24:
   resolved "https://registry.npm.taobao.org/babel-plugin-transform-react-remove-prop-types/download/babel-plugin-transform-react-remove-prop-types-0.4.24.tgz#f2edaf9b4c6a5fbe5c1d678bfb531078c1555f3a"
   integrity sha1-8u2vm0xqX75cHWeL+1MQeMFVXzo=
 
+babel-plugin-version@^0.2.3:
+  version "0.2.3"
+  resolved "https://registry.nlark.com/babel-plugin-version/download/babel-plugin-version-0.2.3.tgz#c4fc6d8b715a663be8850fde74ed69a04e37de29"
+  integrity sha1-xPxti3FaZjvohQ/edO1poE433ik=
+
 babel-preset-jest@^24.9.0:
   version "24.9.0"
   resolved "https://registry.nlark.com/babel-preset-jest/download/babel-preset-jest-24.9.0.tgz?cache=0&sync_timestamp=1621520009746&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fbabel-preset-jest%2Fdownload%2Fbabel-preset-jest-24.9.0.tgz#192b521e2217fb1d1f67cf73f70c336650ad3cdc"

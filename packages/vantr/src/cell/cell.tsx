@@ -2,9 +2,8 @@ import classNames from 'classnames';
 import * as React from 'react';
 import { BaseProps } from '../_internal';
 import CellGroup from './cell-group';
+import { TouchFeedback } from '../rmc';
 import '@vantr/styles/lib/cell';
-
-const prefixCls = 'vanr-cell';
 
 export interface CellProps extends Omit<BaseProps, 'activeClassName'> {
   /**
@@ -27,7 +26,7 @@ export interface CellProps extends Omit<BaseProps, 'activeClassName'> {
   required?: boolean;
   /**
    * 子元素垂直对齐
-   * @default false
+   * @default middle
    */
   align?: 'top' | 'middle' | 'bottom';
   /**
@@ -43,27 +42,48 @@ export interface CellProps extends Omit<BaseProps, 'activeClassName'> {
    * @default right
    */
   arrow?: 'up' | 'down' | 'left' | 'right' | true;
+  /**
+   * 点击单元格时触发
+   */
+  onPress?: (event: React.SyntheticEvent) => void;
 }
 
-const Cell: React.FC<CellProps> & { Group: typeof CellGroup } = (props) => {
-  const { className, style, size, extra, brief, children } = props;
+const prefixCls = 'vanr-cell';
 
-  const classes = classNames(
-    prefixCls,
-    {
-      [`${prefixCls}-${size}`]: !!size,
-    },
+const Cell: React.FC<CellProps> & { Group: typeof CellGroup } = (props) => {
+  const {
     className,
-  );
+    style,
+    icon,
+    size,
+    extra,
+    brief,
+    align = 'middle',
+    required,
+    children,
+    onPress,
+  } = props;
+
+  const classes = classNames(prefixCls, {
+    [`${prefixCls}-${size}`]: !!size,
+    [`${prefixCls}-${align}`]: true,
+    [`${prefixCls}-required`]: required,
+    [className]: !!className,
+  });
 
   return (
-    <div className={classes} style={style}>
-      <div className={`${prefixCls}-content`}>
-        {children}
-        {brief && <div className={`${prefixCls}-brief`}>{brief}</div>}
+    <TouchFeedback onPress={onPress} activeClassName={`${prefixCls}-active`} disabled={!onPress}>
+      <div className={classes} style={style}>
+        {icon && <div className={`${prefixCls}-icon`}>{icon}</div>}
+        {children && (
+          <div className={`${prefixCls}-content`}>
+            {children}
+            {brief && <div className={`${prefixCls}-brief`}>{brief}</div>}
+          </div>
+        )}
+        {extra && <div className={`${prefixCls}-extra`}>{extra}</div>}
       </div>
-      {extra && <div className={`${prefixCls}-extra`}>{extra}</div>}
-    </div>
+    </TouchFeedback>
   );
 };
 

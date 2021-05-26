@@ -6,16 +6,15 @@
   position: relative;
   display: inline-block;
   box-sizing: border-box;
-  margin: 0;
   padding: 0;
+  margin: 0;
+  -webkit-appearance: none;
+  border-radius: @button-border-radius;
+  cursor: pointer;
   font-size: @button-default-font-size;
   line-height: @button-default-line-height;
   text-align: center;
-  border-radius: @button-border-radius;
-  cursor: pointer;
   transition: opacity @animation-duration-fast;
-  -webkit-appearance: none;
-  box-sizing: border-box;
 
   &-active {
     filter: brightness(0.8);
@@ -26,33 +25,33 @@
   }
 
   &-default {
-    color: @button-default-color;
-    background-color: @button-default-background-color;
     border: @button-border-width solid @button-default-border-color;
+    background-color: @button-default-background-color;
+    color: @button-default-color;
   }
 
   &-primary {
-    color: @button-primary-color;
-    background-color: @button-primary-background-color;
     border: @button-border-width solid @button-primary-border-color;
+    background-color: @button-primary-background-color;
+    color: @button-primary-color;
   }
 
   &-success {
-    color: @button-success-color;
-    background-color: @button-success-background-color;
     border: @button-border-width solid @button-success-border-color;
+    background-color: @button-success-background-color;
+    color: @button-success-color;
   }
 
   &-danger {
-    color: @button-danger-color;
-    background-color: @button-danger-background-color;
     border: @button-border-width solid @button-danger-border-color;
+    background-color: @button-danger-background-color;
+    color: @button-danger-color;
   }
 
   &-warning {
-    color: @button-warning-color;
-    background-color: @button-warning-background-color;
     border: @button-border-width solid @button-warning-border-color;
+    background-color: @button-warning-background-color;
+    color: @button-warning-color;
   }
 
   &-ghost {
@@ -105,30 +104,27 @@
 
   &-loading {
     color: inherit;
+    cursor: default;
     font-size: inherit;
 
     &.@{vanr-prefix}-loading {
       color: inherit;
       &-spinner {
-        color: currentColor;
         width: @button-loading-icon-size;
         height: @button-loading-icon-size;
+        color: currentColor;
       }
     }
   }
 
   &-block {
-    width: 100%;
     display: block;
+    width: 100%;
   }
 
   &-disabled {
     cursor: not-allowed;
     opacity: @button-disabled-opacity;
-  }
-
-  &-loading {
-    cursor: default;
   }
 
   &-round {
@@ -162,9 +158,9 @@
 
   &-content {
     display: flex;
+    height: 100%;
     align-items: center;
     justify-content: center;
-    height: 100%;
 
     &::before {
       content: ' ';

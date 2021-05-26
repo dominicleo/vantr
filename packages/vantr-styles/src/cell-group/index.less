@@ -14,4 +14,29 @@
     position: relative;
     background-color: #fff;
   }
+
+  &-radius {
+    padding: 0 @h-spacing-lg;
+
+    .@{prefixCls} {
+      &-title {
+        padding-right: 0;
+        padding-left: 0;
+      }
+      &-body {
+        border-radius: @cell-group-radius;
+        transform: translate3d(0, 0, 0);
+        > .@{vanr-prefix}-cell {
+          &:first-child {
+            border-top-left-radius: @cell-group-radius;
+            border-top-right-radius: @cell-group-radius;
+          }
+          &:last-child {
+            border-bottom-left-radius: @cell-group-radius;
+            border-bottom-right-radius: @cell-group-radius;
+          }
+        }
+      }
+    }
+  }
 }

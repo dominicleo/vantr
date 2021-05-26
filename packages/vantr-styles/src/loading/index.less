@@ -11,8 +11,8 @@
   &-spinner {
     position: relative;
     display: inline-block;
-    vertical-align: middle;
     animation: vanr-rotate @loading-spinner-animation-duration linear infinite;
+    vertical-align: middle;
 
     &-spinner {
       animation-timing-function: steps(12);
@@ -47,8 +47,8 @@
     circle {
       animation: vanr-circular 1.5s ease-in-out infinite;
       stroke: currentColor;
-      stroke-width: 3;
       stroke-linecap: round;
+      stroke-width: 3;
     }
   }
 
@@ -137,8 +137,8 @@
 
 .generate-spinner(@n, @i: 1) when (@i =< @n) {
   .@{prefixCls}-spinner-spinner i:nth-of-type(@{i}) {
-    transform: rotate(@i * 30deg);
     opacity: 1 - (0.75 / 12) * (@i - 1);
+    transform: rotate(@i * 30deg);
   }
   .generate-spinner(@n, (@i + 1));
 }

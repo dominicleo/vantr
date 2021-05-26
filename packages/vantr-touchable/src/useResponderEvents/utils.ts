@@ -5,31 +5,31 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-const keyName = '__reactResponderId'
+const keyName = '__reactResponderId';
 
 function getEventPath(domEvent: any): Array<any> {
   // The 'selectionchange' event always has the 'document' as the target.
   // Use the anchor node as the initial target to reconstruct a path.
   // (We actually only need the first "responder" node in practice.)
   if (domEvent.type === 'selectionchange') {
-    const target = window.getSelection().anchorNode
-    return composedPathFallback(target)
+    const target = window.getSelection().anchorNode;
+    return composedPathFallback(target);
   } else {
     const path =
       domEvent.composedPath != null
         ? domEvent.composedPath()
-        : composedPathFallback(domEvent.target)
-    return path
+        : composedPathFallback(domEvent.target);
+    return path;
   }
 }
 
 function composedPathFallback(target: any): Array<any> {
-  const path = []
+  const path = [];
   while (target != null && target !== document.body) {
-    path.push(target)
-    target = target.parentNode
+    path.push(target);
+    target = target.parentNode;
   }
-  return path
+  return path;
 }
 
 /**
@@ -37,9 +37,9 @@ function composedPathFallback(target: any): Array<any> {
  */
 function getResponderId(node: any): number {
   if (node != null) {
-    return node[keyName]
+    return node[keyName];
   }
-  return null
+  return null;
 }
 
 /**
@@ -47,36 +47,34 @@ function getResponderId(node: any): number {
  */
 export function setResponderId(node: any, id: number) {
   if (node != null) {
-    node[keyName] = id
+    node[keyName] = id;
   }
 }
 
 /**
  * Filter the event path to contain only the nodes attached to the responder system
  */
-export function getResponderPaths(
-  domEvent: any,
-): { idPath: Array<number>; nodePath: Array<any> } {
-  const idPath = []
-  const nodePath = []
-  const eventPath = getEventPath(domEvent)
+export function getResponderPaths(domEvent: any): { idPath: Array<number>; nodePath: Array<any> } {
+  const idPath = [];
+  const nodePath = [];
+  const eventPath = getEventPath(domEvent);
   for (let i = 0; i < eventPath.length; i++) {
-    const node = eventPath[i]
-    const id = getResponderId(node)
+    const node = eventPath[i];
+    const id = getResponderId(node);
     if (id != null) {
-      idPath.push(id)
-      nodePath.push(node)
+      idPath.push(id);
+      nodePath.push(node);
     }
   }
-  return { idPath, nodePath }
+  return { idPath, nodePath };
 }
 
 /**
  * Walk the paths and find the first common ancestor
  */
 export function getLowestCommonAncestor(pathA: Array<any>, pathB: Array<any>) {
-  let pathALength = pathA.length
-  let pathBLength = pathB.length
+  let pathALength = pathA.length;
+  let pathBLength = pathB.length;
   if (
     // If either path is empty
     pathALength === 0 ||
@@ -85,38 +83,38 @@ export function getLowestCommonAncestor(pathA: Array<any>, pathB: Array<any>) {
     // that is connected to the responder system
     pathA[pathALength - 1] !== pathB[pathBLength - 1]
   ) {
-    return null
+    return null;
   }
 
-  let itemA = pathA[0]
-  let indexA = 0
-  let itemB = pathB[0]
-  let indexB = 0
+  let itemA = pathA[0];
+  let indexA = 0;
+  let itemB = pathB[0];
+  let indexB = 0;
 
   // If A is deeper, skip indices that can't match.
   if (pathALength - pathBLength > 0) {
-    indexA = pathALength - pathBLength
-    itemA = pathA[indexA]
-    pathALength = pathBLength
+    indexA = pathALength - pathBLength;
+    itemA = pathA[indexA];
+    pathALength = pathBLength;
   }
 
   // If B is deeper, skip indices that can't match
   if (pathBLength - pathALength > 0) {
-    indexB = pathBLength - pathALength
-    itemB = pathB[indexB]
-    pathBLength = pathALength
+    indexB = pathBLength - pathALength;
+    itemB = pathB[indexB];
+    pathBLength = pathALength;
   }
 
   // Walk in lockstep until a match is found
-  let depth = pathALength
+  let depth = pathALength;
   while (depth--) {
     if (itemA === itemB) {
-      return itemA
+      return itemA;
     }
-    itemA = pathA[indexA++]
-    itemB = pathB[indexB++]
+    itemA = pathA[indexA++];
+    itemB = pathB[indexB++];
   }
-  return null
+  return null;
 }
 
 /**
@@ -125,17 +123,17 @@ export function getLowestCommonAncestor(pathA: Array<any>, pathB: Array<any>) {
  */
 export function hasTargetTouches(target: any, touches: any): boolean {
   if (!touches || touches.length === 0) {
-    return false
+    return false;
   }
   for (let i = 0; i < touches.length; i++) {
-    const node = touches[i].target
+    const node = touches[i].target;
     if (node != null) {
       if (target.contains(node)) {
-        return true
+        return true;
       }
     }
   }
-  return false
+  return false;
 }
 
 /**
@@ -144,55 +142,50 @@ export function hasTargetTouches(target: any, touches: any): boolean {
  */
 export function hasValidSelection(domEvent: any) {
   if (domEvent.type === 'selectionchange') {
-    return isSelectionValid()
+    return isSelectionValid();
   }
-  return domEvent.type === 'select'
+  return domEvent.type === 'select';
 }
 
 /**
  * Events are only valid if the primary button was used without specific modifier keys.
  */
 export function isPrimaryPointerDown(domEvent: any): boolean {
-  const { altKey, button, buttons, ctrlKey, type } = domEvent
-  const isTouch = type === 'touchstart' || type === 'touchmove'
-  const isPrimaryMouseDown =
-    type === 'mousedown' && (button === 0 || buttons === 1)
-  const isPrimaryMouseMove = type === 'mousemove' && buttons === 1
-  const noModifiers = altKey === false && ctrlKey === false
+  const { altKey, button, buttons, ctrlKey, type } = domEvent;
+  const isTouch = type === 'touchstart' || type === 'touchmove';
+  const isPrimaryMouseDown = type === 'mousedown' && (button === 0 || buttons === 1);
+  const isPrimaryMouseMove = type === 'mousemove' && buttons === 1;
+  const noModifiers = altKey === false && ctrlKey === false;
 
-  if (
-    isTouch ||
-    (isPrimaryMouseDown && noModifiers) ||
-    (isPrimaryMouseMove && noModifiers)
-  ) {
-    return true
+  if (isTouch || (isPrimaryMouseDown && noModifiers) || (isPrimaryMouseMove && noModifiers)) {
+    return true;
   }
-  return false
+  return false;
 }
 
 // the next functions are from modules
 export function isSelectionValid() {
-  const selection = window.getSelection()
-  const string = selection.toString()
-  const anchorNode = selection.anchorNode
-  const focusNode = selection.focusNode
+  const selection = window.getSelection();
+  const string = selection.toString();
+  const anchorNode = selection.anchorNode;
+  const focusNode = selection.focusNode;
   const isTextNode =
     (anchorNode && anchorNode.nodeType === window.Node.TEXT_NODE) ||
-    (focusNode && focusNode.nodeType === window.Node.TEXT_NODE)
-  return string.length >= 1 && string !== '\n' && isTextNode
+    (focusNode && focusNode.nodeType === window.Node.TEXT_NODE);
+  return string.length >= 1 && string !== '\n' && isTextNode;
 }
 
 export function getBoundingClientRect(node: HTMLElement) {
   if (node != null) {
-    const isElement = node.nodeType === 1 /* Node.ELEMENT_NODE */
+    const isElement = node.nodeType === 1; /* Node.ELEMENT_NODE */
     if (isElement && typeof node.getBoundingClientRect === 'function') {
-      return node.getBoundingClientRect()
+      return node.getBoundingClientRect();
     }
   }
 }
 
 export function isTouchScreen() {
-  return 'ontouchstart' in window
+  return 'ontouchstart' in window;
 }
 
 export function isTouch(eventType) {
@@ -201,5 +194,5 @@ export function isTouch(eventType) {
     eventType === 'touchmove' ||
     eventType === 'touchend' ||
     eventType === 'touchcancel'
-  )
+  );
 }

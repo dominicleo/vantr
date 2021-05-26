@@ -26,6 +26,7 @@
     "@types/jest": "^26.0.23",
     "@typescript-eslint/eslint-plugin": "^4.24.0",
     "@typescript-eslint/parser": "^4.24.0",
+    "babel-plugin-version": "^0.2.3",
     "dumi": "^1.1.18",
     "dumi-theme-mobile": "1.1.1",
     "eslint": "^7.26.0",

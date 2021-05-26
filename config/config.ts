@@ -18,11 +18,19 @@ const navs = [
 const components = [
   {
     title: '通用',
-    children: ['button', 'cell'],
+    children: ['button', 'cell', 'swipe-action'],
   },
   {
     title: '反馈',
     children: ['loading'],
+  },
+  {
+    title: '展示',
+    children: ['divider'],
+  },
+  {
+    title: '其他',
+    children: ['tracker'],
   },
 ];
 
@@ -71,4 +79,5 @@ export default defineConfig({
     }
   `,
   ],
+  extraBabelPlugins: ['version'],
 });

@@ -3,15 +3,12 @@ import classNames from 'classnames';
 import { Loading } from 'vantr';
 import { tuple, BaseProps } from '../_internal';
 import { TouchFeedback } from '../rmc';
+import { useTracker } from '../hooks';
 import type { LoadingType } from '../loading';
 import '@vantr/styles/lib/button';
 
-const prefixCls = 'vanr-button';
-
 const ButtonTypes = tuple('default', 'primary', 'success', 'warning', 'danger');
-
 export type ButtonType = typeof ButtonTypes[number];
-
 const ButtonSizes = tuple('lg', 'md', 'sm', 'xs');
 export type ButtonSize = typeof ButtonSizes[number];
 
@@ -105,6 +102,8 @@ export interface ButtonProps extends BaseProps {
   onPress?: (event: React.SyntheticEvent) => void;
 }
 
+const prefixCls = 'vanr-button';
+
 export const Button: React.FC<ButtonProps> = (props) => {
   const {
     className,
@@ -130,25 +129,26 @@ export const Button: React.FC<ButtonProps> = (props) => {
 
   const buttonRef = React.useRef<HTMLElement>();
 
-  const classes = classNames(
-    prefixCls,
-    {
-      [`${prefixCls}-${type}`]: true,
-      [`${prefixCls}-${shape}`]: !!shape,
-      [`${prefixCls}-${size}`]: true,
-      [`${prefixCls}-ghost`]: ghost,
-      [`${prefixCls}-block`]: block,
-      [`${prefixCls}-disabled`]: disabled,
-    },
-    className,
-  );
+  const log = useTracker(Button.displayName, {
+    type,
+  });
+
+  const classes = classNames(prefixCls, {
+    [`${prefixCls}-${type}`]: true,
+    [`${prefixCls}-${shape}`]: !!shape,
+    [`${prefixCls}-${size}`]: true,
+    [`${prefixCls}-ghost`]: ghost,
+    [`${prefixCls}-block`]: block,
+    [`${prefixCls}-disabled`]: disabled,
+    [className]: !!className,
+  });
 
   const activeClasses = classNames(`${prefixCls}-active`, { [activeClassName]: !!activeClassName });
 
-  const handlerPress = (event: React.SyntheticEvent) => {
+  const handlePress = (event: React.SyntheticEvent) => {
     onPress && onPress(event);
     buttonRef.current?.click();
-    // log('onPress')
+    log('onPress');
   };
 
   const getStyle = () => {
@@ -205,7 +205,7 @@ export const Button: React.FC<ButtonProps> = (props) => {
 
   return (
     <TouchFeedback
-      onPress={handlerPress}
+      onPress={handlePress}
       activeClassName={activeClasses}
       disabled={loading || disabled}
     >
