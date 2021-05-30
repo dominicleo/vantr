@@ -5,32 +5,34 @@ import { TouchablePropType } from '@vantr/touchable/es/PropsType';
 
 const TouchableFeedback: React.FC<
   {
-    activeClassName: string;
+    activeClassName?: string;
+    activeStyle?: React.CSSProperties;
   } & TouchablePropType
 > = (props) => {
   const [active, setActive] = React.useState(false);
-  const { activeClassName, children, ...rest } = props;
+  const { activeClassName, activeStyle, children, ...rest } = props;
 
-  const pressIn = (e: React.SyntheticEvent) => {
+  const pressIn = (event: React.SyntheticEvent) => {
     setActive(true);
-    props.onPressIn?.(e);
+    props.onPressIn?.(event);
   };
 
-  const pressOut = (e: React.SyntheticEvent) => {
+  const pressOut = (event: React.SyntheticEvent) => {
     setActive(false);
-    props.onPressOut?.(e);
+    props.onPressOut?.(event);
   };
 
   const child = React.Children.only(children);
-  const { className } = (child as any).props;
+  const { className, style } = (child as any).props;
 
   const cls = classnames(className, {
-    [`${activeClassName}`]: !!activeClassName && active,
+    [`${activeClassName}`]: active && !!activeClassName,
   });
 
   // @ts-ignore
   const childWithCls = React.cloneElement(child, {
     className: cls,
+    style: active ? { ...style, ...activeStyle } : style,
   });
 
   return (

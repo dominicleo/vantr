@@ -5,7 +5,7 @@ import CellGroup from './cell-group';
 import { TouchFeedback } from '../rmc';
 import '@vantr/styles/lib/cell';
 
-export interface CellProps extends Omit<BaseProps, 'activeClassName'> {
+export interface CellProps extends BaseProps {
   /**
    * 单元格大小
    */

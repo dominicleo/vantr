@@ -6,7 +6,7 @@ const defaultEvent = 'click';
 
 type EventType = MouseEvent | TouchEvent;
 
-export default function useClickAway(
+function useClickAway(
   onClickAway: (event: EventType) => void,
   target: BasicTarget | BasicTarget[],
   eventName: string = defaultEvent,
@@ -35,3 +35,5 @@ export default function useClickAway(
     };
   }, [target, eventName]);
 }
+
+export default useClickAway;

@@ -18,15 +18,15 @@ const navs = [
 const components = [
   {
     title: '通用',
-    children: ['button', 'cell', 'swipe-action'],
+    children: ['button', 'cell', 'flex'],
   },
   {
     title: '反馈',
-    children: ['loading'],
+    children: ['loading', 'swipe-action'],
   },
   {
     title: '展示',
-    children: ['divider'],
+    children: ['divider', 'skeleton'],
   },
   {
     title: '其他',
@@ -40,8 +40,8 @@ export default defineConfig({
   mode: 'site',
   exportStatic: {},
   hash: true,
-  logo: 'https://img01.yzcdn.cn/vant/logo.png',
-  favicon: 'https://img01.yzcdn.cn/vant/logo.png',
+  logo: 'https://img.yzcdn.cn/vant/logo.png',
+  favicon: 'https://img.yzcdn.cn/vant/logo.png',
   locales: [['zh-CN', '中文']],
   navs,
   menus: { '/components': components },

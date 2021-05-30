@@ -9,7 +9,6 @@ module.exports = {
   extends: [
     'prettier',
     'eslint:recommended',
-    'plugin:compat/recommended',
     'plugin:jest/recommended',
     'plugin:import/typescript',
     'plugin:markdown/recommended',

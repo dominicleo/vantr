@@ -47,7 +47,9 @@ export default () => {
         <Button type='primary' shape='round'>
           胶囊按钮
         </Button>
-        <Button type='primary' shape='circle' loadingType='spinner' loading />
+        <Button type='primary' shape='circle'>
+          圆
+        </Button>
       </Block>
       <Block title='按钮尺寸'>
         <Button type='primary' size='lg'>

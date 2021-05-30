@@ -9,7 +9,7 @@
   padding: 0;
   margin: 0;
   -webkit-appearance: none;
-  border-radius: @button-border-radius;
+
   cursor: pointer;
   font-size: @button-default-font-size;
   line-height: @button-default-line-height;
@@ -127,12 +127,16 @@
     opacity: @button-disabled-opacity;
   }
 
+  &-square {
+    border-radius: @button-border-radius;
+  }
+
   &-round {
     border-radius: @button-round-border-radius;
   }
 
   &-circle {
-    border-radius: 100%;
+    border-radius: @button-round-border-radius;
     &.@{prefixCls} {
       &-lg {
         width: @button-lg-size;

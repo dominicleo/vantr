@@ -1,4 +1,4 @@
-type Callback = (e: React.SyntheticEvent) => void;
+type Callback = (event: React.SyntheticEvent) => void;
 
 export interface TouchablePropType {
   /**

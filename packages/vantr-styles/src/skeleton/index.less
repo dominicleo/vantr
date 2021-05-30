@@ -1,0 +1,127 @@
+@import (reference) '../style/index.less';
+@import (reference) '../style/mixins/hairline.less';
+
+@prefixCls: ~'@{vanr-prefix}-skeleton';
+@button-prefixCls: ~'@{vanr-prefix}-skeleton-button';
+
+.@{prefixCls} {
+  display: flex;
+
+  &-header {
+    display: table-cell;
+    padding-right: @h-spacing-xl;
+    vertical-align: top;
+  }
+
+  &-avatar {
+    flex-shrink: 0;
+    width: @skeleton-avatar-size;
+    height: @skeleton-avatar-size;
+    background-color: @skeleton-avatar-background-color;
+    display: inline-block;
+
+    &-square {
+      border-radius: @border-radius-sm;
+    }
+
+    &-circle {
+      border-radius: @border-radius-circle;
+    }
+  }
+
+  &-content {
+    width: 100%;
+  }
+
+  &-paragraph li,
+  &-title {
+    height: @skeleton-paragraph-height;
+    background-color: @skeleton-paragraph-background-color;
+    border-radius: @border-radius-sm;
+  }
+
+  &-title {
+    width: @skeleton-title-width;
+    margin: 0;
+  }
+
+  &-paragraph {
+    list-style: none;
+    padding-left: 0;
+    li:not(:first-child) {
+      margin-top: @skeleton-paragraph-margin-top;
+    }
+  }
+
+  &-title + &-paragraph {
+    margin-top: 40 * @rpx;
+  }
+
+  &-button {
+    background-color: @skeleton-button-background-color;
+    border-radius: @skeleton-button-border-radius;
+
+    &-xs {
+      width: @skeleton-xs-button-size * 2;
+      height: @skeleton-xs-button-size;
+    }
+    &-sm {
+      width: @skeleton-sm-button-size * 2;
+      height: @skeleton-sm-button-size;
+    }
+    &-md {
+      width: @skeleton-md-button-size * 2;
+      height: @skeleton-md-button-size;
+    }
+    &-lg {
+      width: @skeleton-lg-button-size * 2;
+      height: @skeleton-lg-button-size;
+    }
+
+    &-round {
+      border-radius: @border-radius-circle;
+    }
+
+    &-circle {
+      border-radius: @border-radius-circle;
+      &.@{button-prefixCls}-xs {
+        width: @skeleton-xs-button-size;
+        height: @skeleton-xs-button-size;
+      }
+      &.@{button-prefixCls}-sm {
+        width: @skeleton-sm-button-size;
+        height: @skeleton-sm-button-size;
+      }
+      &.@{button-prefixCls}-md {
+        width: @skeleton-md-button-size;
+        height: @skeleton-md-button-size;
+      }
+      &.@{button-prefixCls}-lg {
+        width: @skeleton-lg-button-size;
+        height: @skeleton-lg-button-size;
+      }
+    }
+
+    &-block {
+      width: 100%;
+      display: block;
+    }
+  }
+
+  &-active {
+    animation: vanr-skeleton-blink @skeleton-animation-duration ease-in-out infinite;
+  }
+
+  &-round {
+    .@{prefixCls}-paragraph li,
+    .@{prefixCls}-title {
+      border-radius: @border-radius-circle;
+    }
+  }
+}
+
+@keyframes vanr-skeleton-blink {
+  50% {
+    opacity: 0.6;
+  }
+}

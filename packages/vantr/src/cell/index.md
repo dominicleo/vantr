@@ -144,7 +144,7 @@ export default () => {
 };
 ```
 
-<API exports='["default", "CellGroup"]' />
+<API />
 
 ### 样式变量
 

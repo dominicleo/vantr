@@ -36,8 +36,7 @@
     "@vantr/styles": "0.0.0",
     "@vantr/touchable": "0.0.0",
     "classnames": "^2.3.1",
-    "hoist-non-react-statics": "3.3.2",
-    "rc-gesture": "0.0.22"
+    "hoist-non-react-statics": "3.3.2"
   },
   "peerDependencies": {
     "react": "17.0.2",

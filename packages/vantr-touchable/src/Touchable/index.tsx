@@ -35,8 +35,9 @@ const Touchable: React.FC<TouchablePropType> = (props) => {
           // 由于 onPress(touchend) 比 click input focus 等事件早执行，为了避免一些穿透现象，这里阻止了 onPress 的默认行为
           event.preventDefault();
           // 由于上一行取消了 onPress (touchend) 的默认行为，即按钮不会再触发 click 事件，这里做一个 click 事件补偿，以免上层元素有 click 相关的事件（比如自动埋点）没办法触发
-          event.target?.click?.();
+          event.target?.click();
         }
+
         onPress?.(event);
 
         // TODO: 类型为 mouseup 表示为 mouse 集合的 onPress

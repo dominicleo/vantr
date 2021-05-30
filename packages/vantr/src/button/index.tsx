@@ -1,7 +1,7 @@
 import * as React from 'react';
 import classNames from 'classnames';
 import { Loading } from 'vantr';
-import { tuple, BaseProps } from '../_internal';
+import { tuple, BaseProps, BaseActiveProps, BaseShapeProps } from '../_internal';
 import { TouchFeedback } from '../rmc';
 import { useTracker } from '../hooks';
 import type { LoadingType } from '../loading';
@@ -12,7 +12,7 @@ export type ButtonType = typeof ButtonTypes[number];
 const ButtonSizes = tuple('lg', 'md', 'sm', 'xs');
 export type ButtonSize = typeof ButtonSizes[number];
 
-export interface ButtonProps extends BaseProps {
+export interface ButtonProps extends BaseProps, BaseActiveProps {
   /**
    * 设置按钮类型
    * @description.en-US Can be set to `default` `primary` `success` `warning` `danger`
@@ -57,7 +57,7 @@ export interface ButtonProps extends BaseProps {
    * 设置按钮形状
    * @description.en-US Can be set button shape
    */
-  shape?: 'circle' | 'round';
+  shape?: BaseShapeProps;
   /**
    * 设置按钮载入状态
    * @description.en-US Set the loading status of button
@@ -88,7 +88,6 @@ export interface ButtonProps extends BaseProps {
    * @default button
    */
   tag?: keyof HTMLElementTagNameMap;
-
   /**
    * 原生 button 标签的 type 属性
    * @description.en-US Set the original html type of button, see: [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attr-type)
@@ -109,6 +108,7 @@ export const Button: React.FC<ButtonProps> = (props) => {
     className,
     activeClassName,
     style,
+    activeStyle,
     type = 'default',
     size = 'md',
     icon,
@@ -122,9 +122,9 @@ export const Button: React.FC<ButtonProps> = (props) => {
     loadingType = 'circular',
     loadingText,
     tag = 'button',
+    htmlType,
     onPress,
     children,
-    ...rest
   } = props;
 
   const buttonRef = React.useRef<HTMLElement>();
@@ -146,15 +146,14 @@ export const Button: React.FC<ButtonProps> = (props) => {
   const activeClasses = classNames(`${prefixCls}-active`, { [activeClassName]: !!activeClassName });
 
   const handlePress = (event: React.SyntheticEvent) => {
-    onPress && onPress(event);
-    buttonRef.current?.click();
+    onPress?.(event);
     log('onPress');
   };
 
   const getStyle = () => {
     const s: React.CSSProperties = { ...style };
 
-    if (!color) return;
+    if (!color) return s;
 
     s.color = ghost ? color : 'white';
 
@@ -207,13 +206,14 @@ export const Button: React.FC<ButtonProps> = (props) => {
     <TouchFeedback
       onPress={handlePress}
       activeClassName={activeClasses}
+      activeStyle={activeStyle}
       disabled={loading || disabled}
     >
       {React.createElement(
         tag,
         {
-          ...rest,
           ref: buttonRef,
+          type: tag === 'button' ? htmlType : null,
           style: getStyle(),
           className: classes,
           disabled,

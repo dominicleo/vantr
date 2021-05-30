@@ -3,7 +3,7 @@ import * as React from 'react';
 import { BaseProps } from '../_internal';
 import '@vantr/styles/lib/cell-group';
 
-export interface CellGroupProps extends Omit<BaseProps, 'activeClassName'> {
+export interface CellGroupProps extends BaseProps {
   /**
    * 是否为圆角
    */

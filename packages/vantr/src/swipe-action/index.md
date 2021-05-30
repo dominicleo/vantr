@@ -10,6 +10,6 @@ nav:
 
 可以左右滑动来展示操作按钮的组件
 
-<code src="./demo/index.tsx"></code>
+<code src="./demo/index.tsx" hidden></code>
 
 <API />

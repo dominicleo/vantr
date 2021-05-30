@@ -28,3 +28,17 @@ export function getTargetElement(
 
   return targetElement;
 }
+
+export function stopPropagation(event: Event) {
+  event.stopPropagation();
+}
+
+export function preventDefault(event: Event, isStopPropagation?: boolean) {
+  if (typeof event.cancelable !== 'boolean' || event.cancelable) {
+    event.preventDefault();
+  }
+
+  if (isStopPropagation) {
+    stopPropagation(event);
+  }
+}

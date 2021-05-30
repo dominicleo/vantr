@@ -53,11 +53,18 @@
 @font-size-sm: 24 * @rpx;
 @font-size-md: 28 * @rpx;
 @font-size-lg: 32 * @rpx;
+@font-size-xl: 36 * @rpx;
 @font-weight-bold: 500;
-@line-height-xs: 28 * @rpx;
-@line-height-sm: 36 * @rpx;
-@line-height-md: 40 * @rpx;
-@line-height-lg: 44 * @rpx;
+@height-xs: 28 * @rpx;
+@height-sm: 36 * @rpx;
+@height-md: 40 * @rpx;
+@height-lg: 44 * @rpx;
+@height-xl: 48 * @rpx;
+@line-height-xs: @height-xs;
+@line-height-sm: @height-sm;
+@line-height-md: @height-md;
+@line-height-lg: @height-lg;
+@line-height-xl: @height-xl;
 @base-font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Segoe UI, Arial,
   Roboto, 'PingFang SC', 'miui', 'Hiragino Sans GB', 'Microsoft Yahei', sans-serif;
 @price-integer-font-family: Avenir-Heavy, PingFang SC, Helvetica Neue, Arial, sans-serif;
@@ -185,3 +192,22 @@
 @divider-content-padding: @h-spacing-xl;
 @divider-content-left-width: 10%;
 @divider-content-right-width: 10%;
+
+// Skeleton
+@skeleton-paragraph-height: 32 * @rpx;
+@skeleton-paragraph-background-color: @active-color;
+@skeleton-paragraph-margin-top: @h-spacing-xl;
+@skeleton-title-width: 40%;
+@skeleton-avatar-size: 64 * @rpx;
+@skeleton-avatar-background-color: @active-color;
+@skeleton-animation-duration: 1.2s;
+
+@skeleton-xs-button-size: @button-xs-size;
+@skeleton-sm-button-size: @button-sm-size;
+@skeleton-md-button-size: @button-md-size;
+@skeleton-lg-button-size: @button-lg-size;
+
+@skeleton-button-border-radius: @button-border-radius;
+@skeleton-button-background-color: @active-color;
+
+@skeleton-image-size-base: 96 * @rpx;
