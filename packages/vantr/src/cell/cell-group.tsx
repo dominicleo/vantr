@@ -1,6 +1,7 @@
-import classNames from 'classnames';
 import * as React from 'react';
+import classNames from 'classnames';
 import { BaseProps } from '../_internal';
+import { ConfigContext } from '../config-provider';
 import '@vantr/styles/lib/cell-group';
 
 export interface CellGroupProps extends BaseProps {
@@ -19,10 +20,19 @@ export interface CellGroupProps extends BaseProps {
   border?: boolean;
 }
 
-const prefixCls = 'vanr-cell-group';
-
 const CellGroup: React.FC<CellGroupProps> = (props) => {
-  const { className, style, radius = false, title, border = true, children } = props;
+  const {
+    prefixCls: customizePrefixCls,
+    className,
+    style,
+    radius = false,
+    title,
+    border = true,
+    children,
+  } = props;
+  const { getPrefixCls } = React.useContext(ConfigContext);
+  const prefixCls = getPrefixCls('cell-group', customizePrefixCls);
+  const hairlinePrefix = getPrefixCls('hairline');
 
   const classes = classNames(prefixCls, {
     [`${prefixCls}-radius`]: radius,
@@ -32,7 +42,9 @@ const CellGroup: React.FC<CellGroupProps> = (props) => {
   return (
     <div className={classes} style={style}>
       {title && <div className={`${prefixCls}-title`}>{title}</div>}
-      <div className={classNames(`${prefixCls}-body`, { ['vanr-hairline-top-bottom']: border })}>
+      <div
+        className={classNames(`${prefixCls}-body`, { [`${hairlinePrefix}-top-bottom`]: border })}
+      >
         {children}
       </div>
     </div>

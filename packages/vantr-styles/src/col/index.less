@@ -1,0 +1,13 @@
+@import (reference) '../style/index.less';
+@import './mixins.less';
+
+@prefixCls: ~'@{vanr-prefix}-col';
+
+.@{prefixCls} {
+  position: relative;
+  max-width: 100%;
+  // Prevent columns from collapsing when empty
+  min-height: 1px;
+}
+
+.make-grid();

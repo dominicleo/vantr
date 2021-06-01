@@ -1,4 +1,4 @@
 module.exports = {
-  'packages/**/*.{ts,tsx}': ['prettier -c --write'],
-  'packages/**/*.less': ['stylelint --fix'],
+  '*.{ts,tsx}': ['prettier --write'],
+  '*.less': ['stylelint --fix'],
 };

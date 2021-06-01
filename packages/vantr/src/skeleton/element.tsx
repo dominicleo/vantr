@@ -4,6 +4,9 @@ import { BaseProps, BaseShapeProps } from '../_internal';
 
 export interface SkeletonElementProps extends BaseProps {
   prefixCls?: string;
+  /**
+   * 占位组件尺寸
+   */
   size?: 'xl' | 'lg' | 'md' | 'sm' | 'xs';
   /**
    * 占位组件形状

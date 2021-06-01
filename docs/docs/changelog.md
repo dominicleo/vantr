@@ -25,3 +25,4 @@ Vantr 遵循 [Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/) 语义�
 - 新增 Tracker 组件
 - 新增 SwipeAction 组件
 - 新增 Skeleton 组件
+- 新增 Grid 组件

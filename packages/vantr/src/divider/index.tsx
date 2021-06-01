@@ -1,6 +1,7 @@
 import * as React from 'react';
 import classNames from 'classnames';
 import { BaseProps } from '../_internal';
+import { ConfigContext } from '../config-provider';
 import '@vantr/styles/lib/divider';
 
 export interface DividerProps extends BaseProps {
@@ -16,10 +17,18 @@ export interface DividerProps extends BaseProps {
   position?: 'center' | 'left' | 'right';
 }
 
-const prefixCls = 'vanr-divider';
-
 const Divider: React.FC<DividerProps> = (props) => {
-  const { className, style, dashed = false, position = 'center', children } = props;
+  const {
+    prefixCls: customizePrefixCls,
+    className,
+    style,
+    dashed = false,
+    position = 'center',
+    children,
+  } = props;
+
+  const { getPrefixCls } = React.useContext(ConfigContext);
+  const prefixCls = getPrefixCls('divider', customizePrefixCls);
 
   const classes = classNames(prefixCls, {
     [`${prefixCls}-${dashed}`]: dashed,

@@ -5,23 +5,23 @@
 .@{prefixCls} {
   display: flex;
   align-items: center;
+  border-width: 0;
+  border-style: solid;
+  border-color: @divider-border-color;
   margin: @divider-margin;
   color: @divider-text-color;
   font-size: @divider-font-size;
   line-height: @divider-line-height;
-  border-color: @divider-border-color;
-  border-style: solid;
-  border-width: 0;
 
   &::before,
   &::after {
     display: block;
-    flex: 1;
-    box-sizing: border-box;
     height: 1px;
-    border-color: inherit;
-    border-style: inherit;
+    box-sizing: border-box;
+    flex: 1;
     border-width: @border-width-base 0 0;
+    border-style: inherit;
+    border-color: inherit;
   }
 
   &::before {

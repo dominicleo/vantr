@@ -1,0 +1,29 @@
+@import '~@vantr/styles/lib/style/index.less';
+
+.demo-grid {
+  &-title {
+    padding: @height-md @h-spacing-xl @h-spacing-xl;
+    color: rgba(69, 90, 100, 0.6);
+    font-size: @font-size-md;
+    font-weight: normal;
+  }
+
+  &-block {
+    padding: 0 @v-spacing-xl;
+  }
+
+  .vanr-col {
+    margin-bottom: @h-spacing-md;
+    background-clip: content-box;
+    color: #fff;
+    line-height: @height-sm * 2;
+    text-align: center;
+
+    &:nth-child(odd) {
+      background-color: #39a9ed;
+    }
+    &:nth-child(even) {
+      background-color: #66c6f2;
+    }
+  }
+}

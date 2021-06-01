@@ -2,6 +2,10 @@ import { tuple } from '.';
 
 export interface BaseProps {
   /**
+   * 设置统一样式前缀
+   */
+  prefixCls?: string;
+  /**
    * 组件样式名
    * @description.en-US Set component className
    */

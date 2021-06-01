@@ -15,13 +15,13 @@ type State = {
   direction: Direction;
 };
 
-function getDirection(x: number, y: number) {
+const getDirection = (x: number, y: number) => {
   if (x > y && x > MIN_DISTANCE) return 'horizontal';
   if (y > x && y > MIN_DISTANCE) return 'vertical';
   return '';
-}
+};
 
-function useTouch() {
+const useTouch = () => {
   const [state, setState] = useSetState<State>({
     startX: 0,
     startY: 0,
@@ -72,6 +72,6 @@ function useTouch() {
     isVertical,
     isHorizontal,
   };
-}
+};
 
 export default useTouch;

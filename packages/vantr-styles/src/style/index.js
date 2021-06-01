@@ -1,2 +1,1 @@
-import 'normalize.css';
-import './init.less';
+import './index.less';

@@ -1,10 +1,10 @@
-import { MutableRefObject } from 'react';
+import * as React from 'react';
 
 export type BasicTarget<T = HTMLElement> =
   | (() => T | null)
   | T
   | null
-  | MutableRefObject<T | null | undefined>;
+  | React.MutableRefObject<T | null | undefined>;
 
 type TargetElement = HTMLElement | Element | Document | Window;
 
@@ -42,3 +42,6 @@ export function preventDefault(event: Event, isStopPropagation?: boolean) {
     stopPropagation(event);
   }
 }
+
+export const canUseDocument =
+  typeof window !== 'undefined' && window.document && window.document.createElement;

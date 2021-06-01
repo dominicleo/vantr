@@ -1,14 +1,14 @@
 import { useRef } from 'react';
 
-function depsAreSame(oldDeps: any[], deps: any[]): boolean {
+const depsAreSame = (oldDeps: any[], deps: any[]) => {
   if (oldDeps === deps) return true;
   for (let i = 0; i < oldDeps.length; i++) {
     if (oldDeps[i] !== deps[i]) return false;
   }
   return true;
-}
+};
 
-export default function useCreation<T>(factory: () => T, deps: any[]) {
+const useCreation = <T>(factory: () => T, deps: any[]) => {
   const { current } = useRef({
     deps,
     obj: undefined as undefined | T,
@@ -20,4 +20,6 @@ export default function useCreation<T>(factory: () => T, deps: any[]) {
     current.initialized = true;
   }
   return current.obj as T;
-}
+};
+
+export default useCreation;

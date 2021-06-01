@@ -1,3 +1,5 @@
+import './row';
+import './col';
 import './cell';
 import './button';
 import './loading';

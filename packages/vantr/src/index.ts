@@ -1,3 +1,8 @@
+export type { RowProps } from './row';
+export { default as Row } from './row';
+export type { ColProps } from './col';
+export { default as Col } from './col';
+
 export type { ButtonProps, ButtonType, ButtonSize } from './button';
 export { default as Button } from './button';
 
@@ -17,3 +22,5 @@ export type { SwipeActionProps, SwipeActionSide, SwipeActionPosition } from './s
 export { default as SwipeAction } from './swipe-action';
 
 export { default as Tracker } from './tracker';
+
+export { default as ConfigProvider } from './config-provider';

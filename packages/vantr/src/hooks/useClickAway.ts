@@ -6,11 +6,11 @@ const defaultEvent = 'click';
 
 type EventType = MouseEvent | TouchEvent;
 
-function useClickAway(
+const useClickAway = (
   onClickAway: (event: EventType) => void,
   target: BasicTarget | BasicTarget[],
   eventName: string = defaultEvent,
-) {
+) => {
   const onClickAwayRef = useRef(onClickAway);
   onClickAwayRef.current = onClickAway;
 
@@ -34,6 +34,6 @@ function useClickAway(
       document.removeEventListener(eventName, handler);
     };
   }, [target, eventName]);
-}
+};
 
 export default useClickAway;

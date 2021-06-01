@@ -1,8 +1,9 @@
-import classNames from 'classnames';
 import * as React from 'react';
+import classNames from 'classnames';
 import { BaseProps } from '../_internal';
-import CellGroup from './cell-group';
+import { ConfigContext } from '../config-provider';
 import { TouchFeedback } from '../rmc';
+import CellGroup from './cell-group';
 import '@vantr/styles/lib/cell';
 
 export interface CellProps extends BaseProps {
@@ -48,10 +49,9 @@ export interface CellProps extends BaseProps {
   onPress?: (event: React.SyntheticEvent) => void;
 }
 
-const prefixCls = 'vanr-cell';
-
 const Cell: React.FC<CellProps> & { Group: typeof CellGroup } = (props) => {
   const {
+    prefixCls: customizePrefixCls,
     className,
     style,
     icon,
@@ -63,6 +63,9 @@ const Cell: React.FC<CellProps> & { Group: typeof CellGroup } = (props) => {
     children,
     onPress,
   } = props;
+
+  const { getPrefixCls } = React.useContext(ConfigContext);
+  const prefixCls = getPrefixCls('cell', customizePrefixCls);
 
   const classes = classNames(prefixCls, {
     [`${prefixCls}-${size}`]: !!size,

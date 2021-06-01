@@ -1,4 +1,5 @@
 export { default as useTouch } from './useTouch';
+export { default as useMemo } from './useMemo';
 export { default as useTracker } from './useTracker';
 export { default as useCreation } from './useCreation';
 export { default as useReactive } from './useReactive';
@@ -7,3 +8,4 @@ export { default as useSafeState } from './useSafeState';
 export { default as useClickAway } from './useClickAway';
 export { default as useUnmountedRef } from './useUnmountedRef';
 export { default as useEventListener } from './useEventListener';
+export { default as useFlexGapSupport } from './useFlexGapSupport';

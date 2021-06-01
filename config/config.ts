@@ -18,7 +18,7 @@ const navs = [
 const components = [
   {
     title: '通用',
-    children: ['button', 'cell', 'flex'],
+    children: ['button', 'cell', 'grid'],
   },
   {
     title: '反馈',

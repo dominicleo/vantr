@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "prepare": "husky install",
     "postinstall": "npm run sort && npm run bootstrap",
     "start": "dumi dev",
     "build": "father-build",

@@ -5,7 +5,13 @@ import { BaseProps } from '../_internal';
 type widthUnit = number | string;
 
 export interface SkeletonParagraphProps extends BaseProps {
+  /**
+   * 设置段落占位图的宽度
+   */
   width?: widthUnit | Array<widthUnit>;
+  /**
+   * 设置段落占位图的行数
+   */
   rows?: number;
 }
 

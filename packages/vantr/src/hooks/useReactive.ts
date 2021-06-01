@@ -44,7 +44,7 @@ function observer<T extends object>(initialVal: T, cb: () => void): T {
   return proxy;
 }
 
-function useReactive<S extends object>(initialState: S): S {
+const useReactive = <S extends object>(initialState: S): S => {
   const [, setFlag] = React.useState({});
   const stateRef = React.useRef<S>(initialState);
 
@@ -55,5 +55,5 @@ function useReactive<S extends object>(initialState: S): S {
   }, []);
 
   return state;
-}
+};
 export default useReactive;

@@ -12,5 +12,6 @@
     "paths": {
       "vantr": ["src/index.ts"]
     }
-  }
+  },
+  "exclude": ["es","lib"]
 }

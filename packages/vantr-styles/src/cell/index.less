@@ -13,7 +13,7 @@
   background-color: @cell-background-color;
   color: @cell-text-color;
   font-size: @cell-font-size;
-  line-height: @cell-line-height;
+  line-height: @cell-height;
   transition: background-color 200ms;
 
   &::after {
@@ -47,10 +47,9 @@
   }
 
   &-icon {
-    height: @cell-line-height;
+    height: @cell-height;
     margin-right: @h-spacing-md;
     font-size: @cell-icon-size;
-    line-height: @cell-line-height;
   }
 
   &-active {

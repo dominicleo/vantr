@@ -3,7 +3,7 @@ import { LogType, getTracker, TrackerOptions, baseData } from '../tracker';
 
 export { LogType };
 
-export default (component = 'UNKNOWN', c1?: TrackerOptions['c1']) => {
+const useTracker = (component = 'UNKNOWN', c1?: TrackerOptions['c1']) => {
   const tracker = getTracker();
   const data: TrackerOptions = {
     ...baseData,
@@ -19,3 +19,5 @@ export default (component = 'UNKNOWN', c1?: TrackerOptions['c1']) => {
     return tracker.log(component, { ...data, type: LogType.CUSTOM }, ext);
   };
 };
+
+export default useTracker;

@@ -52,3 +52,24 @@ export default () => {
 ```
 
 <API />
+
+### 样式变量
+
+组件提供了下列 [Less](https://lesscss.org/) 变量，可用于自定义样式
+
+| 名称                                 | 默认值                  | 描述 |
+| ------------------------------------ | ----------------------- | ---- |
+| @skeleton-paragraph-height           | `32 * @rpx`             |
+| @skeleton-paragraph-background-color | `@active-color`         |
+| @skeleton-paragraph-margin-top       | `@h-spacing-xl`         |
+| @skeleton-title-width                | `40%`                   |
+| @skeleton-avatar-size                | `64 * @rpx`             |
+| @skeleton-avatar-background-color    | `@active-color`         |
+| @skeleton-animation-duration         | `1.2s`                  |
+| @skeleton-xs-button-size             | `@button-xs-size`       |
+| @skeleton-sm-button-size             | `@button-sm-size`       |
+| @skeleton-md-button-size             | `@button-md-size`       |
+| @skeleton-lg-button-size             | `@button-lg-size`       |
+| @skeleton-button-border-radius       | `@button-border-radius` |
+| @skeleton-button-background-color    | `@active-color`         |
+| @skeleton-image-size-base            | `96 * @rpx`             |

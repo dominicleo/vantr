@@ -10,7 +10,7 @@ export interface SkeletonButtonProps extends Omit<SkeletonElementProps, 'prefixC
   block?: boolean;
   /**
    * 按钮占位组件尺寸
-   * @defaukt md
+   * @default md
    */
   size?: 'lg' | 'md' | 'sm' | 'xs';
 }

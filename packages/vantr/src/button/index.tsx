@@ -1,12 +1,13 @@
 import * as React from 'react';
 import classNames from 'classnames';
-import { Loading } from 'vantr';
-import { tuple, BaseProps, BaseActiveProps, BaseShapeProps } from '../_internal';
-import { TouchFeedback } from '../rmc';
+import { BaseActiveProps, BaseProps, BaseShapeProps, tuple } from '../_internal';
+import { ConfigContext } from '../config-provider';
 import { useTracker } from '../hooks';
-import type { LoadingType } from '../loading';
+import { TouchFeedback } from '../rmc';
+import Loading from '../loading';
 import '@vantr/styles/lib/button';
 
+import type { LoadingType } from '../loading';
 const ButtonTypes = tuple('default', 'primary', 'success', 'warning', 'danger');
 export type ButtonType = typeof ButtonTypes[number];
 const ButtonSizes = tuple('lg', 'md', 'sm', 'xs');
@@ -82,13 +83,6 @@ export interface ButtonProps extends BaseProps, BaseActiveProps {
    */
   disabled?: boolean;
   /**
-   * 按钮根节点的 HTML 标签
-   * @type string
-   * @description.en-US The HTML tag of the button root node
-   * @default button
-   */
-  tag?: keyof HTMLElementTagNameMap;
-  /**
    * 原生 button 标签的 type 属性
    * @description.en-US Set the original html type of button, see: [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attr-type)
    * @default button
@@ -101,10 +95,9 @@ export interface ButtonProps extends BaseProps, BaseActiveProps {
   onPress?: (event: React.SyntheticEvent) => void;
 }
 
-const prefixCls = 'vanr-button';
-
-export const Button: React.FC<ButtonProps> = (props) => {
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
   const {
+    prefixCls: customizePrefixCls,
     className,
     activeClassName,
     style,
@@ -121,13 +114,13 @@ export const Button: React.FC<ButtonProps> = (props) => {
     loading = false,
     loadingType = 'circular',
     loadingText,
-    tag = 'button',
     htmlType,
     onPress,
     children,
   } = props;
 
-  const buttonRef = React.useRef<HTMLElement>();
+  const { getPrefixCls } = React.useContext(ConfigContext);
+  const prefixCls = getPrefixCls('button', customizePrefixCls);
 
   const log = useTracker(Button.displayName, {
     type,
@@ -209,22 +202,20 @@ export const Button: React.FC<ButtonProps> = (props) => {
       activeStyle={activeStyle}
       disabled={loading || disabled}
     >
-      {React.createElement(
-        tag,
-        {
-          ref: buttonRef,
-          type: tag === 'button' ? htmlType : null,
-          style: getStyle(),
-          className: classes,
-          disabled,
-          role: 'button',
-          'aria-disabled': disabled,
-        },
-        content,
-      )}
+      <button
+        ref={ref}
+        type={htmlType}
+        className={classes}
+        style={getStyle()}
+        disabled={disabled}
+        role='button'
+        aria-disabled={disabled}
+      >
+        {content}
+      </button>
     </TouchFeedback>
   );
-};
+});
 
 Button.displayName = 'Button';
 

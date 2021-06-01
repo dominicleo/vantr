@@ -14,11 +14,11 @@
   }
 
   &-avatar {
-    flex-shrink: 0;
+    display: inline-block;
     width: @skeleton-avatar-size;
     height: @skeleton-avatar-size;
+    flex-shrink: 0;
     background-color: @skeleton-avatar-background-color;
-    display: inline-block;
 
     &-square {
       border-radius: @border-radius-sm;
@@ -46,8 +46,8 @@
   }
 
   &-paragraph {
-    list-style: none;
     padding-left: 0;
+    list-style: none;
     li:not(:first-child) {
       margin-top: @skeleton-paragraph-margin-top;
     }
@@ -103,8 +103,8 @@
     }
 
     &-block {
-      width: 100%;
       display: block;
+      width: 100%;
     }
   }
 
