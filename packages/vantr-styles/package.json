@@ -11,8 +11,5 @@
     "dist/*.css",
     "es",
     "lib"
-  ],
-  "dependencies": {
-    "normalize.css": "8.0.1"
-  }
+  ]
 }

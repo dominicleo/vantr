@@ -1,0 +1,35 @@
+@import '~@vantr/styles/lib/style/index.less';
+
+.demo-style {
+  overflow: hidden;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding-bottom: @h-spacing-xl;
+  background-color: #fbfbfb;
+  &-title {
+    padding: @height-md @h-spacing-xl @h-spacing-xl;
+    color: rgba(69, 90, 100, 0.6);
+    font-size: @font-size-md;
+    font-weight: normal;
+  }
+
+  &-block {
+    padding: 0 @v-spacing-xl;
+  }
+
+  &-animate {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 200 * @rpx;
+    height: 200 * @rpx;
+    margin: -100 * @rpx 0 0 -100 * @rpx;
+    background-color: @blue;
+    border-radius: 16 * @rpx;
+  }
+
+  .vanr-hairline-top {
+    height: @height-xs / 2;
+    margin-top: @height-xs / 2;
+  }
+}

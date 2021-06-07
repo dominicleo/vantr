@@ -1,8 +1,7 @@
-import * as React from 'react';
-import { useEventListener } from '../../hooks';
-import { Cell } from 'vantr';
 import './index.less';
-import { useRef } from 'react';
+
+import * as React from 'react';
+import { Cell } from 'vantr';
 
 const Block: React.FC<{ title: string }> = ({ title, children }) => {
   return (

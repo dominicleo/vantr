@@ -10,6 +10,9 @@
   "types": "es/index.d.ts",
   "main": "lib/index.js",
   "module": "es/index.js",
+  "scripts": {
+    "g": "esno scripts/generate.ts"
+  },
   "dependencies": {
     "@vantr/styles": "0.0.0",
     "@vantr/touchable": "0.0.0",
@@ -22,5 +25,8 @@
     "lib",
     "es",
     "README.md"
-  ]
+  ],
+  "devDependencies": {
+    "gulp": "4.0.2"
+  }
 }
